@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">Acharge</string>
+    <string name="Register">Register</string>
+    <string name="getting_started">Getting Started</string>
+    <string name="seems_you">Seems you are new here，Let’s set up your profile.</string>
+
+
+    <string name="user_name">User Name</string>
+    <string name="pass_word">Pass word</string>
+    <string name="state_area">State area</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="agree_privacy_poilcy">Agree with the company’s user terms and privacy poilcy.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="privacy_poilcy">Agree with the company’s user terms and privacy poilcy.</string>
+
+
+
+
+</resources>
