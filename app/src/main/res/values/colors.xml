@@ -90,8 +90,7 @@
 
 
     <color name="color_bill_chart">#55BFBF</color>
-    <color name="color_btn_start">#4860FF</color>
-    <color name="color_btn_end">#1BB0FF</color>
+
     <color name="color_default_background">#edf0f2</color>
     <color name="color_red_80">#CCE2001A</color>
 
@@ -183,6 +182,16 @@
     <color name="button_start">#2DACFD</color>
     <color name="button_end">#27BFF0</color>
     <color name="button_preesed">#25BFF0</color>
+
+
+    <color name="color_forget">#FEB590</color>
+
+    <color name="color_btn_pressed">#2DABFD</color>
+    <color name="color_btn_start">#2DABFD</color>
+    <color name="color_btn_end">#28BFF1</color>
+    <color name="color_B4B5BD">#B4B5BD</color>
+
+
 
 
 </resources>

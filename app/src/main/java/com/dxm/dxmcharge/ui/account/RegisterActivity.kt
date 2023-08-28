@@ -1,4 +1,4 @@
-package com.dxm.dxmcharge.ui.register
+package com.dxm.dxmcharge.ui.account
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

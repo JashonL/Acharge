@@ -1,11 +1,15 @@
 package com.dxm.dxmcharge.widget
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.databinding.TitleEditBinding
+import com.dxm.dxmcharge.extend.gone
+import com.dxm.dxmcharge.extend.visible
 
 
 class TitleEditext @JvmOverloads constructor(
@@ -20,6 +24,13 @@ class TitleEditext @JvmOverloads constructor(
     private var title: String = ""
     private var hint: String = ""
 
+
+    private var isPasswrod: Boolean
+
+    private var rightShow: Boolean
+    private var rightIcon: Drawable?
+
+
     init {
         val inflate = LayoutInflater.from(context).inflate(R.layout.title_edit, this)
         binding = TitleEditBinding.bind(inflate)
@@ -31,6 +42,10 @@ class TitleEditext @JvmOverloads constructor(
             try {
                 title = getString(R.styleable.TitleEditext_title) ?: ""
                 hint = getString(R.styleable.TitleEditext_hint) ?: ""
+                rightShow = getBoolean(R.styleable.TitleEditext_right_show, false)
+                rightIcon = getDrawable(R.styleable.TitleEditext_right_icon)
+                isPasswrod =
+                    getBoolean(R.styleable.TitleEditext_ispassword, false)
             } finally {
                 recycle()
             }
@@ -44,6 +59,14 @@ class TitleEditext @JvmOverloads constructor(
     private fun initViews() {
         setTitle(title)
         setHint(hint)
+
+        //密码
+        if (isPasswrod) {
+            binding.etContent.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+        if (rightShow) binding.ivRightIcon.visible() else binding.ivRightIcon.gone()
+
     }
 
 
@@ -64,6 +87,21 @@ class TitleEditext @JvmOverloads constructor(
         if (!hint.isNullOrEmpty()) {
             binding.etContent.hint = hint
         }
+    }
+
+    fun setEye() {
+        if (isPasswrod) {
+            binding.ivRightIcon.setImageResource(R.drawable.eye_close)
+
+            binding.etContent.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        } else {
+            binding.ivRightIcon.setImageResource(R.drawable.eye_open)
+
+            binding.etContent.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+        this.isPasswrod = !isPasswrod;
+
     }
 
 }

@@ -3,40 +3,13 @@ package com.dxm.dxmcharge.logic
 import androidx.lifecycle.liveData
 import com.dxm.dxmcharge.logic.network.SunnyWeatherNetWork
 import kotlinx.coroutines.Dispatchers
+import okhttp3.RequestBody
 
 object Respository {
 
-    fun register(
-        cmd: String?,
-        userId: String?,
-        phone: String?,
-        password: String?,
-        email: String?,
-        installerId: String?,
-        zipCode: String?,
-        country: String?,
-        city: String?,
-        carMode: String?,
-        car_1: String?,
-        car_2: String?,
-        lan: String?
-    ) = liveData(Dispatchers.IO) {
+    fun register(body: RequestBody) = liveData(Dispatchers.IO) {
         val result = try {
-            val register = SunnyWeatherNetWork.register(
-                cmd,
-                userId,
-                phone,
-                password,
-                email,
-                installerId,
-                zipCode,
-                country,
-                city,
-                carMode,
-                car_1,
-                car_2,
-                lan
-            )
+            val register = SunnyWeatherNetWork.register(body)
 
             //Result这个类kotlin是内置的
            if (register.code=="0"){
