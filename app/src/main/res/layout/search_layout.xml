@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:layout_margin="@dimen/dp_10">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_white_bg"
+        android:hint="@string/hello"
+        android:paddingStart="@dimen/dp_10"
+        android:textSize="@dimen/size_content_sp_14" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/sousuo"
+        android:padding="@dimen/dp_6"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@drawable/shape_blue_bg" />
+
+
+</RelativeLayout>

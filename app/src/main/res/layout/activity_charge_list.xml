@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.account.device.ChargeListActivity">
+
+    <com.dxm.dxmcharge.widget.TitleBarLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showRightText="true"
+        app:titleText="@string/Register" />
+
+    <TextView
+        android:id="@+id/tv_geting_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"
+        android:text="@string/hello"
+        android:textColor="@color/color_text_66"
+        android:textSize="@dimen/size_content_sp_14"
+        app:layout_constraintBottom_toTopOf="@+id/tv_seem_you"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_seem_you"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_10"
+        android:text="菜牙！"
+        android:textColor="@color/color_text_33"
+        android:textSize="@dimen/size_title_sp_18"
+        app:layout_constraintBottom_toTopOf="@+id/iv_car" />
+
+
+    <include layout="@layout/search_layout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"
+        android:text="@string/nearest_station"
+        android:textColor="@color/black_333333"
+        android:textSize="@dimen/size_content_sp_14"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_seem_you"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10" />
+
+
+</LinearLayout>

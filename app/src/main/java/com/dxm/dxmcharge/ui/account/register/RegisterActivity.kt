@@ -1,12 +1,12 @@
-package com.dxm.dxmcharge.ui.account
+package com.dxm.dxmcharge.ui.account.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dxm.dxmcharge.R
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
     }
 }

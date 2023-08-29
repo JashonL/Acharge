@@ -1,4 +1,4 @@
-package com.dxm.dxmcharge.ui.account
+package com.dxm.dxmcharge.ui.account.register
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

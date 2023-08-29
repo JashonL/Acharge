@@ -21,9 +21,12 @@
     <string name="to_sign_up">Don’t have an account？sign up</string>
 
 
+    <string name="hello">hello</string>
+    <string name="ev_charging">EV Charging</string>
+    <string name="solutions">Solutions</string>
+    <string name="electric_vehicle">Electric vehicle（EV) charging is an importan aspect of EV ownership. Zap-Map has created this guide to EV charging.</string>
 
-
-
+    <string name="nearest_station">Nearest Station</string>
 
 
 </resources>

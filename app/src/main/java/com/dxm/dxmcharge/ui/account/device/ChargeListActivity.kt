@@ -1,12 +1,12 @@
-package com.dxm.dxmcharge.ui.account
+package com.dxm.dxmcharge.ui.account.device
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dxm.dxmcharge.R
 
-class RegisterActivity : AppCompatActivity() {
+class ChargeListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_charge_list)
     }
 }
