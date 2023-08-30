@@ -32,4 +32,20 @@
     </declare-styleable>
 
 
+    <declare-styleable name="ChargeGifView">
+        <!--刻度的角度 -->
+        <attr name="charge_angle" format="integer" />
+        <!--圆环颜色-->
+        <attr name="charge_circle_color" format="integer|reference" />
+        <!--圆环的厚度-->
+        <attr name="charge_circle_width" format="integer|reference" />
+        <!--刻度的颜色-->
+        <attr name="charge_scales_color" format="integer|reference" />
+        <!--刻度的厚度-->
+        <attr name="charge_scales_width" format="integer|reference" />
+        <!--图标-->
+        <attr name="charge_bitmap" format="reference"/>
+    </declare-styleable>
+
+
 </resources>
