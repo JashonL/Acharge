@@ -48,4 +48,16 @@
     </declare-styleable>
 
 
+    <declare-styleable name="DataItemView">
+        <attr name="leftIcon" format="reference" />
+        <attr name="showLeftIcon" format="boolean" />
+        <attr name="showRightIcon" format="boolean" />
+        <attr name="showSubName" format="boolean" />
+        <attr name="showRedPoint" format="boolean" />
+        <attr name="textSubNameColor" format="reference|color" />
+        <attr name="itemName" format="string" />
+        <attr name="subName" format="string" />
+    </declare-styleable>
+
+
 </resources>
