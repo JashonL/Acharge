@@ -27,6 +27,8 @@
     <string name="electric_vehicle">Electric vehicle（EV) charging is an importan aspect of EV ownership. Zap-Map has created this guide to EV charging.</string>
 
     <string name="nearest_station">Nearest Station</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

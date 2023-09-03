@@ -60,4 +60,11 @@
     </declare-styleable>
 
 
+
+    <declare-styleable name="SettingView">
+        <attr name="title" format="string|reference" />
+
+    </declare-styleable>
+
+
 </resources>
