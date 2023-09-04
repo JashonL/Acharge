@@ -3,9 +3,9 @@
 
 
     <declare-styleable name="TitleEditext">
-        <attr name="title" format="string|reference" />
+        <attr name="TitleEditext_title" format="string|reference" />
         <attr name="hint" format="string|reference" />
-        <attr name="right_icon" format="reference" />
+        <attr name="titletext_right_icon" format="reference" />
         <attr name="right_show" format="boolean" />
 
         <!--是否密码-->

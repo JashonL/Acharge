@@ -40,10 +40,10 @@ class TitleEditext @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                title = getString(R.styleable.TitleEditext_title) ?: ""
+                title = getString(R.styleable.TitleEditext_TitleEditext_title) ?: ""
                 hint = getString(R.styleable.TitleEditext_hint) ?: ""
                 rightShow = getBoolean(R.styleable.TitleEditext_right_show, false)
-                rightIcon = getDrawable(R.styleable.TitleEditext_right_icon)
+                rightIcon = getDrawable(R.styleable.TitleEditext_titletext_right_icon)
                 isPasswrod =
                     getBoolean(R.styleable.TitleEditext_ispassword, false)
             } finally {
