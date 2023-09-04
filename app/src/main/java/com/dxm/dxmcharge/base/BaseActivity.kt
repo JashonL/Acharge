@@ -26,11 +26,4 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
 
 
 
-    /**
-     * 体验账号权限
-     * 体验账号是否可以打开，默认是不可以
-     */
-    open fun isGuestCanOpen(): Boolean {
-        return false
-    }
 }
