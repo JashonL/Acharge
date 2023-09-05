@@ -12,7 +12,6 @@ class API {
     interface AccountService{
 
         //注册
-        @FormUrlEncoded
         @POST("/v2/user/register")
         fun register(@Body body: RequestBody):Call<HttpResult<String>>
 

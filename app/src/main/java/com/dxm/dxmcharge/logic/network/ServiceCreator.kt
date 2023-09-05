@@ -1,15 +1,36 @@
 package com.dxm.dxmcharge.logic.network
 
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ServiceCreator {
 
-    private val BASE_URL = "http://localhost/ocpp/api/"
+    private val BASE_URL = "http://blinkcharge.cn"
 
+
+    //配置okHttp并设置时间、日志信息和cookies
+
+
+    //配置okHttp并设置时间、日志信息和cookies
+    var httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        level= HttpLoggingInterceptor.Level.BODY
+    }
+
+
+
+    var okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(RequestInterceptor())
+        .addInterceptor(httpLoggingInterceptor)
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS) //设置Cookie持久化
+        .build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
