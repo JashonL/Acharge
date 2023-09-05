@@ -52,46 +52,52 @@
             android:orientation="vertical">
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/user_name" />
+                app:TitleEditext_title="@string/user_name" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/pass_word" />
+                app:TitleEditext_title="@string/pass_word" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_password2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/pass_word" />
+                app:TitleEditext_title="@string/pass_word" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_state_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/state_area" />
+                app:TitleEditext_title="@string/state_area" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/email" />
+                app:TitleEditext_title="@string/email" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
-                app:title="@string/phone" />
+                app:TitleEditext_title="@string/phone" />
 
 
             <LinearLayout
@@ -117,6 +123,7 @@
                     android:id="@+id/tv_user_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_10"
                     android:text="@string/privacy_poilcy"
                     android:textColor="@color/color_text_99"
                     android:textSize="@dimen/size_content_sp_12" />

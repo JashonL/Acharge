@@ -2,6 +2,7 @@ package com.charge.lib.storage.service
 
 import com.charge.lib.storage.Service
 import com.charge.lib.storage.ServiceType
+import com.charge.lib.storage.account.IAccountService
 
 
 /**
@@ -32,6 +33,10 @@ class ServiceManager private constructor() {
     }
     interface ServiceInterface {
         fun storageService(): IStorageService
+
+
+
+        fun accountService(): IAccountService
 
     }
 }

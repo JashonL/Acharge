@@ -5,7 +5,7 @@ import com.charge.lib.storage.account.IAccountService
 import com.charge.lib.storage.service.DefaultStorageService
 import com.dxm.dxmcharge.App
 import com.shuoxd.lib.service.account.User
-import com.shuoxd.lib.util.GsonManager
+import com.charge.lib.util.GsonManager
 
 abstract class BaseAccountService : IAccountService {
 

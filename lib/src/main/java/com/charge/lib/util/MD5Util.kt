@@ -1,4 +1,4 @@
-package com.shuoxd.lib.util
+package com.charge.lib.util
 
 import java.security.MessageDigest
 

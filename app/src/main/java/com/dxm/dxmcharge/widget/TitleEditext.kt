@@ -2,6 +2,7 @@ package com.dxm.dxmcharge.widget
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.text.Editable
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -81,6 +82,13 @@ class TitleEditext @JvmOverloads constructor(
             binding.etContent.setText(content)
         }
     }
+
+
+    fun getText(): String {
+        return binding.etContent.text.toString().trim()
+    }
+
+
 
 
     fun setHint(hint: String?) {

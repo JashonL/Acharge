@@ -1,7 +1,7 @@
-package com.shuoxd.lib.util
+package com.charge.lib.util
 
 import android.util.Log
-import com.shuoxd.lib.BuildConfig
+import com.charge.lib.BuildConfig
 
 object LogUtil {
 

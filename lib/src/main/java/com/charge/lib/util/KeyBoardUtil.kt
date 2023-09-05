@@ -1,4 +1,4 @@
-package com.shuoxd.lib.util
+package com.charge.lib.util
 
 import android.app.Activity
 import android.content.Context

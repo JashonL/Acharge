@@ -8,16 +8,27 @@
     android:orientation="vertical"
     tools:context=".ui.account.login.LoginActivity">
 
+
+    <com.dxm.dxmcharge.widget.TitleBarLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showRightButton="false"
+        app:showRightImage="false"
+        app:showRightText="false"
+        app:titleText="" />
+
+
     <TextView
         android:id="@+id/tv_geting_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_40"
         android:paddingStart="@dimen/dp_10"
         android:paddingEnd="@dimen/dp_10"
         android:text="@string/login_start"
         android:textColor="@color/color_text_33"
-        android:textSize="@dimen/size_title_sp_24" />
+        android:textSize="@dimen/size_title_sp_36" />
 
     <TextView
         android:id="@+id/tv_seem_you"
@@ -28,7 +39,7 @@
         android:paddingStart="@dimen/dp_10"
         android:text="@string/welcome_back"
         android:textColor="@color/color_text_99"
-        android:textSize="@dimen/size_title_sp_18" />
+        android:textSize="@dimen/size_title_sp_25" />
 
     <com.dxm.dxmcharge.widget.TitleEditext
         android:layout_width="match_parent"
@@ -36,7 +47,7 @@
         android:layout_marginStart="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginEnd="@dimen/dp_10"
-        app:title="@string/user_name" />
+        app:TitleEditext_title="@string/email_address" />
 
 
     <com.dxm.dxmcharge.widget.TitleEditext
@@ -48,16 +59,16 @@
         app:ispassword="true"
         app:right_icon="@drawable/eye_open"
         app:right_show="true"
-        app:title="@string/user_name" />
+        app:TitleEditext_title="@string/pass_word" />
 
 
     <TextView
         android:id="@+id/tv_forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="end"
         android:text="@string/forget_password"
         android:textColor="@color/color_forget"
         android:textSize="@dimen/size_content_sp_14" />
@@ -67,12 +78,12 @@
         android:id="@+id/bt_register"
         android:layout_width="@dimen/dp_250"
         android:layout_height="@dimen/dp_45"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_marginEnd="@dimen/dp_30"
         android:background="@drawable/button_blue_gradient"
         android:gravity="center"
-        android:layout_gravity="center_horizontal"
         android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -83,9 +94,9 @@
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_10"
+        android:gravity="end"
         android:text="@string/to_sign_up"
         android:textColor="@color/color_B4B5BD"
         android:textSize="@dimen/size_content_sp_14" />

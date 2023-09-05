@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.charge.lib.storage.ServiceType
+import com.charge.lib.storage.account.IAccountService
 import com.charge.lib.storage.service.DefaultStorageService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
+import com.charge.lib.util.ToastUtil
+import com.shuoxd.charge.service.account.DefaultAccountService
 
 class App : Application(), ServiceManager.ServiceInterface {
 
@@ -29,17 +32,32 @@ class App : Application(), ServiceManager.ServiceInterface {
         instance=this
         registerService()
 
+        ToastUtil.init(this)
+
+
     }
 
 
     private fun registerService() {
+
         ServiceManager.instance()
             .registerService(ServiceType.STORAGE, DefaultStorageService(this))
+        ServiceManager.instance().registerService(ServiceType.ACCOUNT, DefaultAccountService())
+
     }
 
+
+
     override fun storageService(): IStorageService {
-        return ServiceManager.instance().getService(ServiceType.ACCOUNT) as DefaultStorageService
+        return ServiceManager.instance().getService(ServiceType.STORAGE) as DefaultStorageService
     }
+
+
+    override fun accountService(): IAccountService {
+        return ServiceManager.instance().getService(ServiceType.ACCOUNT) as IAccountService
+    }
+
+
 
 
     /**

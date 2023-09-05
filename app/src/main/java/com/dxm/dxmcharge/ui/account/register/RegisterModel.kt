@@ -12,7 +12,7 @@ class RegisterModel : ViewModel() {
     private val registerLivedata = MutableLiveData<RequestBody>()
 
 
-    private fun toRegister(
+    fun toRegister(
         cmd: String?,
         userId: String?,
         phone: String?,

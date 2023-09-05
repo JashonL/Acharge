@@ -18,7 +18,7 @@
     <string name="welcome_back"> Welcome back,you’ve\n been missed！</string>
     <string name="forget_password">Forget password ？</string>
     <string name="login">Login</string>
-    <string name="to_sign_up">Don’t have an account？sign up</string>
+    <string name="to_sign_up">Don’t have an account？</string>
 
 
     <string name="hello">hello</string>
@@ -27,10 +27,12 @@
     <string name="electric_vehicle">Electric vehicle（EV) charging is an importan aspect of EV ownership. Zap-Map has created this guide to EV charging.</string>
 
     <string name="nearest_station">Nearest Station</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="get_started">Get Started</string>
+    <string name="email_address">Email Address</string>
+
+
 
 
 
