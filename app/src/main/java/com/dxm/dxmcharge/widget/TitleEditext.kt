@@ -32,6 +32,9 @@ class TitleEditext @JvmOverloads constructor(
     private var rightIcon: Drawable?
 
 
+    private var onRightClickListeners: OnRightClickListeners? = null
+
+
     init {
         val inflate = LayoutInflater.from(context).inflate(R.layout.title_edit, this)
         binding = TitleEditBinding.bind(inflate)
@@ -57,6 +60,7 @@ class TitleEditext @JvmOverloads constructor(
 
     }
 
+
     private fun initViews() {
         setTitle(title)
         setHint(hint)
@@ -67,6 +71,18 @@ class TitleEditext @JvmOverloads constructor(
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
         if (rightShow) binding.ivRightIcon.visible() else binding.ivRightIcon.gone()
+
+
+        rightIcon?.let {
+            binding.ivRightIcon.setImageDrawable(it)
+        }
+
+
+
+        binding.ivRightIcon.setOnClickListener {
+            onRightClickListeners?.onRightIconclick()
+        }
+
 
     }
 
@@ -89,8 +105,6 @@ class TitleEditext @JvmOverloads constructor(
     }
 
 
-
-
     fun setHint(hint: String?) {
         if (!hint.isNullOrEmpty()) {
             binding.etContent.hint = hint
@@ -110,6 +124,15 @@ class TitleEditext @JvmOverloads constructor(
         }
         this.isPasswrod = !isPasswrod;
 
+    }
+
+
+    fun setOnRightClick(onRightIconClick: OnRightClickListeners) {
+        this.onRightClickListeners = onRightIconClick
+    }
+
+    interface OnRightClickListeners {
+        fun onRightIconclick()
     }
 
 }

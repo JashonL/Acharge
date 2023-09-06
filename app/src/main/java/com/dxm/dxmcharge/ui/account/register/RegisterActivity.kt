@@ -4,16 +4,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
-import com.charge.lib.util.ToastUtil
-import com.dxm.dxmcharge.R
+import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityRegisterBinding
+import com.dxm.dxmcharge.widget.TitleEditext
+import com.dxm.dxmcharge.widget.popuwindow.ListPopModel
+import com.dxm.dxmcharge.widget.popuwindow.ListPopuwindow
 
-class RegisterActivity : AppCompatActivity(), View.OnClickListener {
+class RegisterActivity : BaseActivity(), View.OnClickListener {
 
     companion object {
         fun start(context: Context?) {
@@ -36,14 +35,63 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initliseners() {
         binding.btLogin.setOnClickListener(this)
+        binding.etStateArea.setOnRightClick(object: TitleEditext.OnRightClickListeners{
+            override fun onRightIconclick() {
+                selectCountry()
+            }
+
+        })
+
     }
 
 
     private fun initData() {
+
+
         viewModel.newLiveData.observe(this) {
 
         }
 
+
+        viewModel.newCountryLiveData.observe(this) {
+            dismissDialog()
+            selectCountry()
+        }
+
+
+    }
+
+
+    private fun selectCountry() {
+        val provinceList = viewModel.newCountryLiveData.value?.getOrNull()
+        if (provinceList.isNullOrEmpty()) {
+            showDialog()
+            viewModel.getCountry("countryList")
+        } else {
+
+            val options = mutableListOf<ListPopModel>()
+
+            //显示下拉框
+            for (plant in provinceList) {
+                options.add(ListPopModel(plant.country, false))
+            }
+
+/*            val curItem: String? = if (viewModel.currentStation != null) {
+                viewModel.currentStation!!.id
+            } else {
+                ""
+            }*/
+            ListPopuwindow.showAsDropDownPop(
+                this,
+                options,
+                 binding.etStateArea,
+              ""
+            ) {
+
+            }
+
+
+        }
     }
 
 

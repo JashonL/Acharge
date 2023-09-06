@@ -1,0 +1,275 @@
+package com.dxm.dxmcharge.widget.popuwindow
+
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.dxm.dxmcharge.R
+import com.dxm.dxmcharge.databinding.ListPopLayoutBinding
+import com.dxm.dxmcharge.databinding.PopListItemBinding
+import com.dxm.dxmcharge.extend.gone
+import com.dxm.dxmcharge.extend.visible
+import com.tianji.ttech.base.BaseViewHolder
+import com.tianji.ttech.base.OnItemClickListener
+
+
+/**
+ * 下拉列表 pop
+ * 目前只支持单选
+ */
+
+class ListPopuwindow(
+    context: Context,
+    list: List<ListPopModel>,
+    curItem: String,
+    chooseLisener: ((pos: Int) -> Unit)? = null
+) :
+    PopupWindow(), OnItemClickListener {
+
+    private var chooseLisener: ((pos: Int) -> Unit)? = null
+
+
+    companion object {
+        fun showPop(
+            context: Context, list: List<ListPopModel>,
+            dropView: View, curItem: String, chooselisener: ((pos: Int) -> Unit)? = null
+        ) {
+
+            //计算显示的位置
+            val listPopuwindow = ListPopuwindow(context, list, curItem, chooselisener)
+            dropView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+            val viewWidth = dropView.measuredHeight
+//            val ivWidth = listPopuwindow.popWidth / 2
+
+//            val xOffset=-ivWidth+viewWidth
+
+
+            listPopuwindow.showAtLocation(
+                dropView,
+                Gravity.TOP or Gravity.CENTER_HORIZONTAL,
+                0,
+                viewWidth
+            )
+
+            /*     listPopuwindow.showAsDropDown(
+                     dropView,
+                     -viewWidth,
+                     0
+                 )*/
+
+
+        }
+
+
+
+        fun showAsDropDownPop(
+            context: Context, list: List<ListPopModel>,
+            dropView: View, curItem: String, chooselisener: ((pos: Int) -> Unit)? = null
+        ) {
+
+            //计算显示的位置
+            val listPopuwindow = ListPopuwindow(context, list, curItem, chooselisener)
+            dropView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+//            val viewWidth = dropView.measuredHeight
+//            val ivWidth = listPopuwindow.popWidth / 2
+
+//            val xOffset=-ivWidth+viewWidth
+
+                 listPopuwindow.showAsDropDown(
+                     dropView,
+                     0,
+                     0
+                 )
+
+
+        }
+
+
+
+        fun showAsDropDownPopByWidth(
+            context: Context, list: List<ListPopModel>,
+            dropView: View, curItem: String, chooselisener: ((pos: Int) -> Unit)? = null
+        ) {
+
+            //计算显示的位置
+            val listPopuwindow = ListPopuwindow(context, list, curItem, chooselisener)
+            dropView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+
+
+            listPopuwindow.width=dropView.width
+
+            listPopuwindow.showAsDropDown(
+                dropView,
+                0,
+                0
+            )
+
+
+        }
+
+
+
+
+
+    }
+
+
+    var binding: ListPopLayoutBinding
+    var popWidth: Int = 0
+
+
+    init {
+
+        /*        this.contentView = inflater.inflate(R.layout.list_pop_layout, null) //布局xml
+        ListPopLayoutBinding.bind(this.contentView)*/
+
+        val inflater = LayoutInflater.from(context)
+        binding = ListPopLayoutBinding.inflate(inflater)
+        this.contentView = binding.root
+
+        initContentView(context, list, curItem)
+
+        this.contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        popWidth = this.contentView.measuredWidth
+
+
+        var hight: Int = context.resources.getDimensionPixelSize(R.dimen.dp_248)
+        val itemHight: Int = context.resources.getDimensionPixelOffset(R.dimen.dp_40)
+
+
+        hight = if (itemHight * list.size > hight) {
+            context.resources.getDimensionPixelSize(R.dimen.dp_248)
+        } else {
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        }
+
+        this.width = LinearLayout.LayoutParams.WRAP_CONTENT //父布局减去padding
+        this.height = hight
+        this.animationStyle = R.style.Popup_Anim  //进入和退出动画效果
+        this.isOutsideTouchable = true //是否可以
+        this.isClippingEnabled = false //背景透明化可以铺满全屏
+        // 设置最终的背景,也可以通过context.resources.getColor(resId)设置自己的颜色
+        val colorDrawable = ColorDrawable(Color.parseColor("#00000000"))
+        this.setBackgroundDrawable(colorDrawable) //设置背景
+        this.setTouchInterceptor { _, _ -> false };
+        isTouchable = true
+        this.isFocusable = true
+        this.chooseLisener = chooseLisener
+    }
+
+
+
+
+
+    private fun initContentView(context: Context, list: List<ListPopModel>, curItem: String) {
+        for (i in list.indices) {
+            list[i].choose = list[i].title == curItem
+        }
+        binding.rlvList.layoutManager = LinearLayoutManager(context)
+        binding.rlvList.adapter = ListAdapter(context, list.toMutableList(), this)
+    }
+
+
+    private fun getViewWidth() = this.popWidth
+
+
+    override fun onItemClick(v: View?, position: Int) {
+        super.onItemClick(v, position)
+        if (chooseLisener != null) {
+            chooseLisener?.invoke(position)
+        }
+
+        this.dismiss()
+    }
+
+
+    fun setOnChooseListener(listener: ((pos: Int) -> Unit)) {
+        this.chooseLisener = listener
+    }
+
+
+    //dapter
+
+    class ListAdapter(
+        val context: Context,
+        private val list: MutableList<ListPopModel>,
+        val listener: OnItemClickListener
+    ) :
+        RecyclerView.Adapter<ListViewHolder>() {
+
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+            return ListViewHolder.create(context, listener, parent)
+        }
+
+        override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+            val item = list[position]
+            holder.bindData(item, position)
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+
+/*
+        override fun onItemClick(v: View?, position: Int) {
+            super.onItemClick(v, position)
+            itemChoose(position)
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        private fun itemChoose(position: Int) {
+            //将所有选项设置成未选
+            for (i in list.indices) {
+                list[i].choose = i == position
+            }
+            notifyDataSetChanged()
+        }
+*/
+
+    }
+
+
+    class ListViewHolder(itemView: View, onItemClickListener: OnItemClickListener? = null) :
+        BaseViewHolder(itemView, onItemClickListener) {
+
+        lateinit var binding: PopListItemBinding
+
+        companion object {
+            fun create(
+                context: Context,
+                onItemClickListener: OnItemClickListener?,
+                parent: ViewGroup
+            ): ListViewHolder {
+                val view =
+                    LayoutInflater.from(context).inflate(R.layout.pop_list_item, parent, false)
+                val bind = PopListItemBinding.bind(view)
+                val listViewHolder = ListViewHolder(view, onItemClickListener)
+                listViewHolder.binding = bind
+                listViewHolder.binding.root.setOnClickListener(listViewHolder)
+                listViewHolder.binding.root.setOnLongClickListener(listViewHolder)
+                return listViewHolder
+            }
+        }
+
+
+        fun bindData(listPopModel: ListPopModel, position: Int) {
+            val choose = listPopModel.choose
+            if (choose) binding.ivChoose.visible() else binding.ivChoose.gone()
+            binding.tvItem.text = listPopModel.title
+        }
+
+
+    }
+
+
+}

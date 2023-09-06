@@ -14,6 +14,8 @@ object SunnyWeatherNetWork {
 
     suspend fun register(body: RequestBody) = acountService.register(body).await()
 
+    suspend fun getcountry(body: RequestBody) = acountService.countryList(body).await()
+
 
 
 

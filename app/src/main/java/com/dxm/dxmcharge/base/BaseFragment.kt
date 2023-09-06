@@ -1,75 +1,63 @@
 package com.dxm.dxmcharge.base
 
-import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.charge.lib.storage.ServiceType
+import androidx.fragment.app.Fragment
 import com.charge.lib.storage.account.IAccountService
-import com.charge.lib.storage.service.DefaultStorageService
 import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.dxm.dxmcharge.App
 import com.tianji.ttech.base.IDisplay
 
-abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay {
+
+abstract class BaseFragment : Fragment(), ServiceManager.ServiceInterface, IDisplay {
 
 
-    private val display: IDisplay by lazy(LazyThreadSafetyMode.NONE) {
-        AndroidDisplay(this)
-    }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun storageService(): IStorageService {
+        return App.instance().storageService()
     }
 
     override fun deviceService(): IDeviceService {
         return App.instance().deviceService()
     }
 
-    override fun storageService(): IStorageService {
-        return App.instance().storageService()
-    }
-
-
     override fun accountService(): IAccountService {
         return App.instance().accountService()
     }
 
 
+
     override fun showDialog() {
-        display.showDialog()
+        (activity as? BaseActivity)?.showDialog()
     }
 
     override fun dismissDialog() {
-        display.dismissDialog()
+        (activity as? BaseActivity)?.dismissDialog()
     }
 
     override fun showPageErrorView(onRetry: ((view: View) -> Unit)) {
-        display.showPageErrorView(onRetry)
+        (activity as? BaseActivity)?.showPageErrorView(onRetry)
     }
 
     override fun hidePageErrorView() {
-        display.hidePageErrorView()
+        (activity as? BaseActivity)?.hidePageErrorView()
     }
 
     override fun showPageLoadingView() {
-        display.showPageLoadingView()
+        (activity as? BaseActivity)?.showPageLoadingView()
     }
 
     override fun hidePageLoadingView() {
-        display.hidePageLoadingView()
+        (activity as? BaseActivity)?.hidePageLoadingView()
     }
-
 
     override fun showResultDialog(
         result: String?,
         onCancelClick: (() -> Unit)?,
         onComfirClick: (() -> Unit)?
     ) {
-        display.showResultDialog(result, onCancelClick, onComfirClick)
+        (activity as? BaseActivity)?.showResultDialog(result, onCancelClick, onComfirClick)
     }
 
 }

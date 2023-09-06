@@ -81,6 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
+                app:right_show="true"
+                app:titletext_right_icon="@drawable/down"
                 app:TitleEditext_title="@string/state_area" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
@@ -117,6 +119,7 @@
                     android:id="@+id/iv_select"
                     android:layout_width="@dimen/dp_26"
                     android:layout_height="@dimen/dp_26"
+                    android:theme="@style/MyCheckBox"
                     android:padding="4dp" />
 
                 <TextView
@@ -125,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/dp_10"
                     android:text="@string/privacy_poilcy"
-                    android:textColor="@color/color_text_99"
+                    android:textColor="@color/color_forget"
                     android:textSize="@dimen/size_content_sp_12" />
 
             </LinearLayout>

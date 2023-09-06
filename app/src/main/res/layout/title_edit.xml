@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:padding="@dimen/dp_10"
         app:layout_constraintBottom_toBottomOf="@+id/et_content"
         app:layout_constraintRight_toRightOf="@+id/et_content"
         app:layout_constraintTop_toTopOf="@+id/et_content" />

@@ -33,10 +33,7 @@ class ServiceManager private constructor() {
     }
     interface ServiceInterface {
         fun storageService(): IStorageService
-
-
-
         fun accountService(): IAccountService
-
+        fun deviceService(): IDeviceService
     }
 }

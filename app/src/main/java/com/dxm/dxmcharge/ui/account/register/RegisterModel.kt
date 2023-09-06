@@ -32,19 +32,19 @@ class RegisterModel : ViewModel() {
         lan: String?
     ) {
         val jsonOf = jsonOf(
-            cmd to cmd,
-            userId to userId,
-            phone to phone,
-            password to password,
-            email to email,
-            installerId to installerId,
-            zipCode to zipCode,
-            country to country,
-            city to city,
-            carMode to carMode,
-            car_1 to car_1,
-            car_2 to car_2,
-            lan to lan
+            "cmd" to cmd,
+            "userId" to userId,
+            "phone" to phone,
+            "password" to password,
+            "email" to email,
+            "installerId" to installerId,
+            "zipCode" to zipCode,
+            "country" to country,
+            "city" to city,
+            "carMode" to carMode,
+            "car_1" to car_1,
+            "car_2" to car_2,
+            "lan" to lan
         )
 
         registerLivedata.value = jsonOf
@@ -54,6 +54,21 @@ class RegisterModel : ViewModel() {
     val newLiveData = registerLivedata.switchMap {
         Respository.register(it)
     }
+
+
+    private val countryLivedata = MutableLiveData<RequestBody>()
+
+    //请求国家
+    fun getCountry(cmd: String?) {
+        val jsonOf = jsonOf("cmd" to cmd)
+        countryLivedata.value = jsonOf
+    }
+
+
+    val newCountryLiveData = countryLivedata.switchMap {
+        Respository.countrylist(it)
+    }
+
 
 
 }

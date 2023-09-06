@@ -31,8 +31,11 @@
 
     <string name="get_started">Get Started</string>
     <string name="email_address">Email Address</string>
-
-
+    <string name="m12_loading">loading…</string>
+    <string name="m16_cancel">cancel</string>
+    <string name="m18_confirm">confirm</string>
+    <string name="m36_tip">Tips</string>
+    <string name="m13_loading_error_please_click_retry">load fail,try again...</string>
 
 
 

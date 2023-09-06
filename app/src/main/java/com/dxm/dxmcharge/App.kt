@@ -6,6 +6,7 @@ import android.content.Context
 import com.charge.lib.storage.ServiceType
 import com.charge.lib.storage.account.IAccountService
 import com.charge.lib.storage.service.DefaultStorageService
+import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.charge.lib.util.ToastUtil
@@ -56,6 +57,16 @@ class App : Application(), ServiceManager.ServiceInterface {
     override fun accountService(): IAccountService {
         return ServiceManager.instance().getService(ServiceType.ACCOUNT) as IAccountService
     }
+
+
+
+    override fun deviceService(): IDeviceService {
+        return ServiceManager.instance().getService(ServiceType.DEVICE) as IDeviceService
+    }
+
+
+
+
 
 
 

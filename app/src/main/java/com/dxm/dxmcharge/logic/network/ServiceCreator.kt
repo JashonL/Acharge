@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object ServiceCreator {
 
-    private val BASE_URL = "http://blinkcharge.cn"
+    private val BASE_URL = "https://blinkcharge.cn/"
 
 
     //配置okHttp并设置时间、日志信息和cookies
