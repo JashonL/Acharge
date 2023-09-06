@@ -14,7 +14,11 @@ object Respository {
            if (register.code=="0"){
                Result.success(register.data)
            } else {
-               Result.failure(RuntimeException("repsponse status is ${register.code}"))
+//               Result.failure(RuntimeException("repsponse status is ${register.code}"))
+
+
+               Result.failure(RuntimeException(register.data))
+
            }
         } catch (e: Exception) {
             Result.failure(e)

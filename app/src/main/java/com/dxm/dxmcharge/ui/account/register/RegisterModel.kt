@@ -52,7 +52,12 @@ class RegisterModel : ViewModel() {
     }
 
     val newLiveData = registerLivedata.switchMap {
+
+
         Respository.register(it)
+
+
+
     }
 
 
@@ -69,6 +74,8 @@ class RegisterModel : ViewModel() {
         Respository.countrylist(it)
     }
 
+
+     var curCountry: String? = ""
 
 
 }

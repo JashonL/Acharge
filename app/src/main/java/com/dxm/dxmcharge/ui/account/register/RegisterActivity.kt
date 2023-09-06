@@ -4,8 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import com.charge.lib.util.KeyBoardUtil
+import com.charge.lib.util.ToastUtil
+import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityRegisterBinding
 import com.dxm.dxmcharge.widget.TitleEditext
@@ -29,14 +33,23 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this).get(RegisterModel::class.java)
+
+        initViews()
         initData()
         initliseners()
     }
 
+
+    private fun initViews() {
+        binding.etStateArea.setContent("US")
+    }
+
+
     private fun initliseners() {
         binding.btLogin.setOnClickListener(this)
-        binding.etStateArea.setOnRightClick(object: TitleEditext.OnRightClickListeners{
+        binding.etStateArea.setOnRightClick(object : TitleEditext.OnRightClickListeners {
             override fun onRightIconclick() {
+                KeyBoardUtil.hideInput(this@RegisterActivity)
                 selectCountry()
             }
 
@@ -49,6 +62,9 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
 
         viewModel.newLiveData.observe(this) {
+
+
+
 
         }
 
@@ -76,17 +92,15 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 options.add(ListPopModel(plant.country, false))
             }
 
-/*            val curItem: String? = if (viewModel.currentStation != null) {
-                viewModel.currentStation!!.id
-            } else {
-                ""
-            }*/
+            val curItem = viewModel.curCountry
             ListPopuwindow.showAsDropDownPop(
                 this,
                 options,
-                 binding.etStateArea,
-              ""
+                binding.etStateArea,
+                curItem
             ) {
+                viewModel.curCountry = options[it].title
+                binding.etStateArea.setContent(viewModel.curCountry)
 
             }
 
@@ -114,45 +128,42 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         val email = binding.etEmail.getText()
         val country = binding.etPhone.getText()
 
+        val checked = binding.ivSelect.isChecked
 
-        /*    if (!viewModel.isAgree) {
-                ToastUtil.show(getString(R.string.m81_please_check_agree_agreement))
-            } else if (TextUtils.isEmpty(username)) {
-                ToastUtil.show(getString(R.string.m74_please_input_username))
-            } else if (TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
-                ToastUtil.show(getString(R.string.m82_password_cant_empty))
-            } else if (password.length < 6 || confirmPassword.length < 6) {
-                ToastUtil.show(getString(R.string.m84_password_cannot_be_less_than_6_digits))
-            } else if (password != confirmPassword) {
-                ToastUtil.show(getString(R.string.m83_passwords_are_inconsistent))
-            } else if (TextUtils.isEmpty(phone)) {
-                ToastUtil.show(getString(R.string.m85_no_phone_number))
-            } else if (TextUtils.isEmpty(city)) {
-                ToastUtil.show(getString(R.string.m89_no_email))
-            } else if (TextUtils.isEmpty(country)) {
-                ToastUtil.show(getString(R.string.m87_no_country))
-            } else if (TextUtils.isEmpty(timeZone)) {
-                ToastUtil.show(getString(R.string.m86_no_timezone))
-            } else {
-                viewModel.register(username, password, country, city, phone, timeZone)
-            }*/
+        if (!checked) {
+            ToastUtil.show(getString(R.string.m81_please_check_agree_agreement))
+        } else if (TextUtils.isEmpty(username)) {
+            ToastUtil.show(getString(R.string.m74_please_input_username))
+        } else if (TextUtils.isEmpty(password) || TextUtils.isEmpty(password2)) {
+            ToastUtil.show(getString(R.string.m82_password_cant_empty))
+        } else if (password.length < 6 || password2.length < 6) {
+            ToastUtil.show(getString(R.string.m84_password_cannot_be_less_than_6_digits))
+        } else if (password != password2) {
+            ToastUtil.show(getString(R.string.m83_passwords_are_inconsistent))
+        } else if (TextUtils.isEmpty(phone)) {
+            ToastUtil.show(getString(R.string.m85_no_phone_number))
+        } else if (TextUtils.isEmpty(email)) {
+            ToastUtil.show(getString(R.string.m89_no_email))
+        } else if (TextUtils.isEmpty(country)) {
+            ToastUtil.show(getString(R.string.m87_no_country))
+        } else {
+            viewModel.toRegister(
+                "register",
+                username,
+                country,//
+                password,
+                email,
+                "1",
+                "1",
+                phone,
+                "",
+                "1",
+                "1",
+                "1",
+                "0"
+            )
+        }
 
-
-        viewModel.toRegister(
-            "register",
-            username,
-            phone,
-            password,
-            email,
-            "1",
-            "1",
-            country,
-            "",
-            "1",
-            "1",
-            "1",
-            "0"
-        )
 
     }
 

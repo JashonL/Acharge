@@ -29,7 +29,7 @@ import com.tianji.ttech.base.OnItemClickListener
 class ListPopuwindow(
     context: Context,
     list: List<ListPopModel>,
-    curItem: String,
+    curItem: String?="",
     chooseLisener: ((pos: Int) -> Unit)? = null
 ) :
     PopupWindow(), OnItemClickListener {
@@ -40,7 +40,7 @@ class ListPopuwindow(
     companion object {
         fun showPop(
             context: Context, list: List<ListPopModel>,
-            dropView: View, curItem: String, chooselisener: ((pos: Int) -> Unit)? = null
+            dropView: View, curItem: String?="", chooselisener: ((pos: Int) -> Unit)? = null
         ) {
 
             //计算显示的位置
@@ -69,10 +69,9 @@ class ListPopuwindow(
         }
 
 
-
         fun showAsDropDownPop(
             context: Context, list: List<ListPopModel>,
-            dropView: View, curItem: String, chooselisener: ((pos: Int) -> Unit)? = null
+            dropView: View, curItem: String? = "", chooselisener: ((pos: Int) -> Unit)? = null
         ) {
 
             //计算显示的位置
@@ -83,15 +82,14 @@ class ListPopuwindow(
 
 //            val xOffset=-ivWidth+viewWidth
 
-                 listPopuwindow.showAsDropDown(
-                     dropView,
-                     0,
-                     0
-                 )
+            listPopuwindow.showAsDropDown(
+                dropView,
+                0,
+                0
+            )
 
 
         }
-
 
 
         fun showAsDropDownPopByWidth(
@@ -104,7 +102,7 @@ class ListPopuwindow(
             dropView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
 
 
-            listPopuwindow.width=dropView.width
+            listPopuwindow.width = dropView.width
 
             listPopuwindow.showAsDropDown(
                 dropView,
@@ -114,9 +112,6 @@ class ListPopuwindow(
 
 
         }
-
-
-
 
 
     }
@@ -166,10 +161,7 @@ class ListPopuwindow(
     }
 
 
-
-
-
-    private fun initContentView(context: Context, list: List<ListPopModel>, curItem: String) {
+    private fun initContentView(context: Context, list: List<ListPopModel>, curItem: String?) {
         for (i in list.indices) {
             list[i].choose = list[i].title == curItem
         }

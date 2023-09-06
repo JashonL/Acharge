@@ -71,7 +71,6 @@
             android:layout_width="56dp"
             android:layout_height="28dp"
             android:textSize="@dimen/text_medium"
-            tools:ignore="TouchTargetSizeCheck"
          />
 
         <TextView

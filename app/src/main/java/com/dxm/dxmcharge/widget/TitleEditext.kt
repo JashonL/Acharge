@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.databinding.TitleEditBinding
@@ -96,6 +97,8 @@ class TitleEditext @JvmOverloads constructor(
     fun setContent(content: String?) {
         if (!content.isNullOrEmpty()) {
             binding.etContent.setText(content)
+            binding.etContent.setSelection(content.length)
+
         }
     }
 

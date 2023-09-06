@@ -13,6 +13,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:showRightButton="false"
         app:showRightText="true"
         app:titleText="@string/Register" />
 
@@ -49,6 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
             android:orientation="vertical">
 
             <com.dxm.dxmcharge.widget.TitleEditext
@@ -81,9 +83,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
+                app:TitleEditext_title="@string/state_area"
                 app:right_show="true"
-                app:titletext_right_icon="@drawable/down"
-                app:TitleEditext_title="@string/state_area" />
+                app:titletext_right_icon="@drawable/down" />
 
             <com.dxm.dxmcharge.widget.TitleEditext
                 android:id="@+id/et_email"
@@ -119,8 +121,8 @@
                     android:id="@+id/iv_select"
                     android:layout_width="@dimen/dp_26"
                     android:layout_height="@dimen/dp_26"
-                    android:theme="@style/MyCheckBox"
-                    android:padding="4dp" />
+                    android:padding="4dp"
+                    android:theme="@style/MyCheckBox" />
 
                 <TextView
                     android:id="@+id/tv_user_agreement"

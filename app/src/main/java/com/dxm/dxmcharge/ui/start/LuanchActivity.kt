@@ -28,5 +28,8 @@ class LuanchActivity : AppCompatActivity() {
         } else {
             WelcomeActivity.start(this@LuanchActivity)
         }
+
+        finish()
+
     }
 }

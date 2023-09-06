@@ -36,7 +36,14 @@
     <string name="m18_confirm">confirm</string>
     <string name="m36_tip">Tips</string>
     <string name="m13_loading_error_please_click_retry">load fail,try again...</string>
-
+    <string name="m81_please_check_agree_agreement">Please check Agree Agreement</string>
+    <string name="m74_please_input_username">Please enter a user name</string>
+    <string name="m82_password_cant_empty">The password cannot be empty</string>
+    <string name="m84_password_cannot_be_less_than_6_digits">The password must be at least six digits long</string>
+    <string name="m83_passwords_are_inconsistent">The two passwords are different</string>
+    <string name="m85_no_phone_number">No mobile phone number was entered</string>
+    <string name="m89_no_email">Email not filled in</string>
+    <string name="m87_no_country">Country not entered</string>
 
 
 </resources>

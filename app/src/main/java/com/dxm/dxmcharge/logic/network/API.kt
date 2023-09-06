@@ -13,7 +13,7 @@ class API {
     interface AccountService{
 
         //注册
-        @POST("ev/version/1.0.0/api/ocpp/api")
+        @POST("ev/version/1.0.0/api/register")
         fun register(@Body body: RequestBody):Call<HttpResult<String>>
 
 
