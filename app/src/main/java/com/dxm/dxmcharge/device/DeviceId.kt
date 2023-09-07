@@ -62,7 +62,7 @@ internal class DeviceId private constructor() {
      */
     private object InstallationID {
         private var sID: String = ""
-        private const val INSTALLATION = "Growatt-InstallationID"
+        private const val INSTALLATION = "dxmcharge-InstallationID"
 
         @Synchronized
         fun id(context: Context): String {

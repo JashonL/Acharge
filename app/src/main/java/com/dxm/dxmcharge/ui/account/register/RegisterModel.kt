@@ -52,12 +52,7 @@ class RegisterModel : ViewModel() {
     }
 
     val newLiveData = registerLivedata.switchMap {
-
-
         Respository.register(it)
-
-
-
     }
 
 

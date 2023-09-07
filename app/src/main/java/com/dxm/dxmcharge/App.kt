@@ -10,6 +10,7 @@ import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.charge.lib.util.ToastUtil
+import com.dxm.dxmcharge.device.DefaultDeviceService
 import com.shuoxd.charge.service.account.DefaultAccountService
 
 class App : Application(), ServiceManager.ServiceInterface {
@@ -44,7 +45,8 @@ class App : Application(), ServiceManager.ServiceInterface {
         ServiceManager.instance()
             .registerService(ServiceType.STORAGE, DefaultStorageService(this))
         ServiceManager.instance().registerService(ServiceType.ACCOUNT, DefaultAccountService())
-
+        ServiceManager.instance().registerService(ServiceType.DEVICE, DefaultDeviceService(this))
+        ServiceManager.instance().registerService(ServiceType.ACCOUNT, DefaultAccountService())
     }
 
 

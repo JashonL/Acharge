@@ -44,6 +44,6 @@
     <string name="m85_no_phone_number">No mobile phone number was entered</string>
     <string name="m89_no_email">Email not filled in</string>
     <string name="m87_no_country">Country not entered</string>
-
+    <string name="m76_password_cant_empty">The password cannot be empty</string>
 
 </resources>

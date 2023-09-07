@@ -3,14 +3,11 @@ package com.dxm.dxmcharge.base
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.charge.lib.storage.ServiceType
 import com.charge.lib.storage.account.IAccountService
-import com.charge.lib.storage.service.DefaultStorageService
 import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.dxm.dxmcharge.App
-import com.tianji.ttech.base.IDisplay
 
 abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay {
 

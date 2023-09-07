@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.charge.lib.util.KeyBoardUtil
-import com.charge.lib.util.ToastUtil
+import com.charge.lib.util.*
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityRegisterBinding
+import com.dxm.dxmcharge.ui.account.login.LoginModel
 import com.dxm.dxmcharge.widget.TitleEditext
 import com.dxm.dxmcharge.widget.popuwindow.ListPopModel
 import com.dxm.dxmcharge.widget.popuwindow.ListPopuwindow
@@ -26,14 +26,21 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var viewModel: RegisterModel
+
+    val viewModel by lazy { ViewModelProvider(this)[RegisterModel::class.java] }
+    val logViewModel by lazy { ViewModelProvider(this)[LoginModel::class.java] }
+
+
+/*    private var viewModel: RegisterModel by lazy {
+        ViewModelProvider(this).get(RegisterModel::class.java)
+    }*/
+//    private lateinit var logViewModel: LoginModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this).get(RegisterModel::class.java)
-
         initViews()
         initData()
         initliseners()
@@ -59,11 +66,15 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun initData() {
-
-
         viewModel.newLiveData.observe(this) {
-
-
+            val orNull = it.getOrNull()
+            if (orNull != null) {
+                //请求登录
+                login()
+            } else {
+                val message = it.exceptionOrNull()?.message
+                ToastUtil.show(message)
+            }
 
 
         }
@@ -74,6 +85,34 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             selectCountry()
         }
 
+
+    }
+
+
+    private fun login() {
+
+        val password = binding.etPassword.getText()
+        val userName = binding.etUserName.getText()
+
+
+        if (!TextUtils.isEmpty(password)) {
+            showDialog()
+//            val pwdMd5 = MD5Util.md5(password)
+            val version = Util.getVersion(this)
+            val deviceId = deviceService().getDeviceId()
+            val language = LanUtils.getLanguage(this)
+
+            logViewModel.login(
+                "login", userName, deviceId, password, version,
+                language.toString()
+            )
+ /*           if (pwdMd5 != null) {
+                logViewModel.login(
+                    "login", userName, deviceId, password, version,
+                    language.toString()
+                )
+            }*/
+        }
 
     }
 

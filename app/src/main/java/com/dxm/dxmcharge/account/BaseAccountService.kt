@@ -88,7 +88,7 @@ abstract class BaseAccountService : IAccountService {
 
 
     override fun id(): String? {
-        return user?.id
+        return user?.userId
     }
 
     override fun isLogin(): Boolean {

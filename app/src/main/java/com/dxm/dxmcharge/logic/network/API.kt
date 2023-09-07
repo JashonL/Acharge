@@ -1,6 +1,7 @@
 package com.dxm.dxmcharge.logic.network
 
 import com.dxm.dxmcharge.logic.model.Country
+import com.shuoxd.lib.service.account.User
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -16,7 +17,9 @@ class API {
         @POST("ev/version/1.0.0/api/register")
         fun register(@Body body: RequestBody):Call<HttpResult<String>>
 
-
+        //登录
+        @POST("ev/version/1.0.0/api/login")
+        fun login(@Body body: RequestBody):Call<HttpResult<User>>
 
         //获取国家
         @POST("ev/version/1.0.0/api/countryList")

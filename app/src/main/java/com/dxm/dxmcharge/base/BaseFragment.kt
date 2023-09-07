@@ -7,7 +7,6 @@ import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.dxm.dxmcharge.App
-import com.tianji.ttech.base.IDisplay
 
 
 abstract class BaseFragment : Fragment(), ServiceManager.ServiceInterface, IDisplay {

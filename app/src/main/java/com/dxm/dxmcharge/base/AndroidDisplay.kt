@@ -8,8 +8,6 @@ import android.view.Window
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.databinding.DefaultActivityErrorPageBinding
 import com.dxm.dxmcharge.dialog.AlertDialog
-import com.dxm.dxmcharge.dialog.AlertDialog.Companion.showDialog
-import com.tianji.ttech.base.IDisplay
 import java.lang.ref.WeakReference
 
 /**
