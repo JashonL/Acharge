@@ -19,7 +19,7 @@ import com.charge.lib.util.Util
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityLoginBinding
-import com.dxm.dxmcharge.ui.account.device.ChargeListActivity
+import com.dxm.dxmcharge.ui.device.ChargeListActivity
 import com.dxm.dxmcharge.ui.account.register.RegisterActivity
 import com.shuoxd.lib.service.account.User
 

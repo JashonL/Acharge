@@ -26,6 +26,12 @@ class API {
         fun countryList(@Body body: RequestBody):Call<HttpResult<List<Country>>>
 
 
+        //获取充电桩
+        @POST("ev/version/1.0.0/api/list")
+        fun chargeList(@Body body: RequestBody):Call<HttpResult<List<Charge>>>
+
+
+
     }
 
 }

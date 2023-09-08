@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.account.device.ChargeListActivity">
+    tools:context=".ui.device.ChargeListActivity">
 
     <com.dxm.dxmcharge.widget.TitleBarLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:showRightText="true"
-        app:titleText="@string/Register" />
+        app:showRightButton="false"
+        app:left_showlogo="true"
+        app:leftIcon="@drawable/icon_add"
+        app:titleText=" " />
 
     <TextView
         android:id="@+id/tv_geting_start"

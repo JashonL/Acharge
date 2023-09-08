@@ -76,4 +76,31 @@ object Respository {
 
 
 
+
+    fun getChargeList(body: RequestBody) = liveData(Dispatchers.IO) {
+        val result = try {
+            val chargelist = SunnyWeatherNetWork.getchargelist(body)
+            //Result这个类kotlin是内置的
+            if (login.code=="0"){
+                Result.success(chargelist.data)
+            } else {
+//               Result.failure(RuntimeException("repsponse status is ${register.code}"))
+                Result.failure(RuntimeException("repsponse status is "))
+            }
+        } catch (e: Exception) {
+            if (e is BaseException){
+                Result.failure(RuntimeException(e.errorMsg))
+            }else{
+                Result.failure(e)
+            }
+
+        }
+        emit(result)
+
+    }
+
+
+
+
+
 }

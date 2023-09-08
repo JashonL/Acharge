@@ -1,4 +1,4 @@
-package com.dxm.dxmcharge.ui.account.device
+package com.dxm.dxmcharge.ui.device
 
 import android.content.Context
 import android.content.Intent

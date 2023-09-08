@@ -39,6 +39,7 @@ class TitleBarLayout @JvmOverloads constructor(
     private var rightButtonText: String? = null
     private var rigthMenuDrawable: Drawable? = null
     private var rigthMenu2Drawable: Drawable? = null
+    private var leftDrawable: Drawable? = null
 
 
     private var leftIconClickListener: ((View?) -> Unit)? = null
@@ -80,6 +81,8 @@ class TitleBarLayout @JvmOverloads constructor(
 
                 rigthMenu2Drawable = getDrawable(R.styleable.TitleBarLayout_rightmenu2Icon)
                 rigthMenuDrawable=getDrawable(R.styleable.TitleBarLayout_right_icon)
+                leftDrawable=getDrawable(R.styleable.TitleBarLayout_leftIcon)
+
 
             } finally {
                 recycle()
@@ -109,9 +112,9 @@ class TitleBarLayout @JvmOverloads constructor(
         }
 
         if (showleftLogo){
-            binding.ivLogo.visible()
+            binding.ivLeft.visible()
         }else{
-            binding.ivLogo.gone()
+            binding.ivLeft.gone()
         }
 
         showRightImage()
