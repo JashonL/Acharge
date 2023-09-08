@@ -1,5 +1,6 @@
 package com.dxm.dxmcharge.logic.network
 
+import com.dxm.dxmcharge.logic.network.gson.AppConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ServiceCreator {
 
-    private val BASE_URL = "https://blinkcharge.cn/"
+    private const val BASE_URL = "https://blinkcharge.cn/"
 
 
     //配置okHttp并设置时间、日志信息和cookies
@@ -31,6 +32,7 @@ object ServiceCreator {
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttpClient)
+        .addConverterFactory(AppConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

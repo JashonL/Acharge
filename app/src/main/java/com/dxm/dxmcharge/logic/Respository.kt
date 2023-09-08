@@ -1,6 +1,7 @@
 package com.dxm.dxmcharge.logic
 
 import androidx.lifecycle.liveData
+import com.dxm.dxmcharge.base.BaseException
 import com.dxm.dxmcharge.logic.network.SunnyWeatherNetWork
 import com.google.gson.Gson
 import com.shuoxd.lib.service.account.User
@@ -62,7 +63,12 @@ object Respository {
                 Result.failure(RuntimeException("repsponse status is "))
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            if (e is BaseException){
+                Result.failure(RuntimeException(e.errorMsg))
+            }else{
+                Result.failure(e)
+            }
+
         }
         emit(result)
 

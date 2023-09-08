@@ -1,5 +1,14 @@
 <resources>
 
+
+    <string name="m2_parse_error_msg">Failed to parse data</string>
+    <string name="m3_bad_network_msg">Internet problem</string>
+    <string name="m4_connect_error_msg">Connection error</string>
+    <string name="m5_connect_timeout_msg">Connection time out</string>
+    <string name="m6_other_msg">Unknown mistake</string>
+
+
+
     <string name="app_name">Acharge</string>
     <string name="Register">Register</string>
     <string name="getting_started">Getting Started</string>
