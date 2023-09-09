@@ -11,14 +11,15 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.dxm.dxmcharge.R;
 
 
 public class ChargeGifView extends View {
 
-    private final int DEFAULT_WIDTH = 500;//默认控件宽度
-    private final int DEFAULT_HEIGHT = 500;//默认控件高度
+    private final int DEFAULT_WIDTH = 550;//默认控件宽度
+    private final int DEFAULT_HEIGHT = 550;//默认控件高度
     private final int DEFAULT_STROKE_WIDTH = 20;//默认圆环厚度
     private final int DEFAULT_SCALE_WIDTH = 5;//刻度
     private final int DEFAULT_SCALE_ANGLE = 15;//刻度
@@ -69,9 +70,9 @@ public class ChargeGifView extends View {
     private void initAttr(Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ChargeGifView);
         scaleAngle = typedArray.getInt(R.styleable.ChargeGifView_charge_angle, DEFAULT_SCALE_ANGLE);
-        circle_color=typedArray.getColor(R.styleable.ChargeGifView_charge_circle_color,Color.RED);
+        circle_color=typedArray.getColor(R.styleable.ChargeGifView_charge_circle_color, ContextCompat.getColor(context,R.color.color_2BB6F7));
         circle_width=typedArray.getInt(R.styleable.ChargeGifView_charge_circle_width,DEFAULT_STROKE_WIDTH);
-        scales_color=typedArray.getColor(R.styleable.ChargeGifView_charge_scales_color,Color.RED);
+        scales_color=typedArray.getColor(R.styleable.ChargeGifView_charge_scales_color,ContextCompat.getColor(context,R.color.color_2BB6F7));
         scales_width=typedArray.getInt(R.styleable.ChargeGifView_charge_scales_color,DEFAULT_SCALE_WIDTH);
         typedArray.recycle();
 

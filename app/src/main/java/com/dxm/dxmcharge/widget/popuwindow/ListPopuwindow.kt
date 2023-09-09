@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,8 +16,8 @@ import com.dxm.dxmcharge.databinding.ListPopLayoutBinding
 import com.dxm.dxmcharge.databinding.PopListItemBinding
 import com.dxm.dxmcharge.extend.gone
 import com.dxm.dxmcharge.extend.visible
-import com.tianji.ttech.base.BaseViewHolder
-import com.tianji.ttech.base.OnItemClickListener
+import com.dxm.dxmcharge.base.BaseViewHolder
+import com.dxm.dxmcharge.base.OnItemClickListener
 
 
 /**

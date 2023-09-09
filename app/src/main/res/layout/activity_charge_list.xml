@@ -14,7 +14,8 @@
         app:showRightText="true"
         app:showRightButton="false"
         app:left_showlogo="true"
-        app:leftIcon="@drawable/icon_add"
+        app:showLeftBackIcon="false"
+        app:barLeftIcon="@drawable/icon_add"
         app:titleText=" " />
 
     <TextView
@@ -43,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/iv_car" />
 
 
-    <include layout="@layout/search_layout" />
+    <include layout="@layout/search_layout" android:id="@+id/search"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,9 +61,12 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlv_charge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10" />
+        tools:listitem="@layout/item_charge"
+
+        />
 
 
 </LinearLayout>

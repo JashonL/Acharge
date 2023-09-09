@@ -52,14 +52,14 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun initData() {
-        logViewModel.newLoginLiveData.observe(this){
+        logViewModel.newLoginLiveData.observe(this) {
             dismissDialog()
             val orNull = it.getOrNull()
             if (orNull != null) {
                 loginSuccess(orNull)
             } else {
                 val message = it.exceptionOrNull()?.message
-                showResultDialog(message,null,null)
+                showResultDialog(message, null, null)
 
 
             }
@@ -77,9 +77,6 @@ class LoginActivity : BaseActivity() {
     }
 
 
-
-
-
     private fun setlisteners() {
         bind.btLogin.setOnClickListener {
             login()
@@ -87,7 +84,6 @@ class LoginActivity : BaseActivity() {
 
 
     }
-
 
 
     private fun login() {
@@ -119,7 +115,6 @@ class LoginActivity : BaseActivity() {
     }
 
 
-
     private fun initviews() {
 
         bind.tvRegister.run {
@@ -127,6 +122,21 @@ class LoginActivity : BaseActivity() {
             movementMethod = LinkMovementMethod.getInstance()
             text = getTvSpan()
         }
+
+        val user = accountService().user()
+        val logout = accountService().isLogout()
+        user?.let {
+            val userId = it.userId
+            val password = it.password
+            bind.etUsername.setContent(userId)
+            bind.etPassword.setContent(password)
+            if (!logout) {
+                login()
+            }
+
+
+        }
+
 
     }
 
@@ -145,7 +155,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun addColorSpan(spannable: SpannableString, colorSpanContent: String) {
-        val span = ForegroundColorSpan(ContextCompat.getColor(this,R.color.color_text_33))
+        val span = ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_text_33))
         val startPosition = spannable.toString().indexOf(colorSpanContent)
         val endPosition = startPosition + colorSpanContent.length
         spannable.setSpan(span, startPosition, endPosition, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)

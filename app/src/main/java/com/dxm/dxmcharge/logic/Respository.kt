@@ -14,15 +14,15 @@ object Respository {
         val result = try {
             val register = SunnyWeatherNetWork.register(body)
             //Result这个类kotlin是内置的
-           if (register.code=="0"){
-               Result.success(register.data)
-           } else {
+            if (register.code == "0") {
+                Result.success(register.data)
+            } else {
 //               Result.failure(RuntimeException("repsponse status is ${register.code}"))
 
 
-               Result.failure(RuntimeException(register.data))
+                Result.failure(RuntimeException(register.data))
 
-           }
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -31,13 +31,11 @@ object Respository {
     }
 
 
-
-
     fun countrylist(body: RequestBody) = liveData(Dispatchers.IO) {
         val result = try {
             val register = SunnyWeatherNetWork.getcountry(body)
             //Result这个类kotlin是内置的
-            if (register.code=="0"){
+            if (register.code == "0") {
                 Result.success(register.data)
             } else {
                 Result.failure(RuntimeException("repsponse status is ${register.code}"))
@@ -51,21 +49,20 @@ object Respository {
     }
 
 
-
     fun login(body: RequestBody) = liveData(Dispatchers.IO) {
         val result = try {
             val login = SunnyWeatherNetWork.login(body)
             //Result这个类kotlin是内置的
-            if (login.code=="0"){
+            if (login.code == "0") {
                 Result.success(login.data)
             } else {
 //               Result.failure(RuntimeException("repsponse status is ${register.code}"))
                 Result.failure(RuntimeException("repsponse status is "))
             }
         } catch (e: Exception) {
-            if (e is BaseException){
+            if (e is BaseException) {
                 Result.failure(RuntimeException(e.errorMsg))
-            }else{
+            } else {
                 Result.failure(e)
             }
 
@@ -73,24 +70,22 @@ object Respository {
         emit(result)
 
     }
-
-
 
 
     fun getChargeList(body: RequestBody) = liveData(Dispatchers.IO) {
         val result = try {
             val chargelist = SunnyWeatherNetWork.getchargelist(body)
             //Result这个类kotlin是内置的
-            if (login.code=="0"){
+            if (chargelist.code == "0") {
                 Result.success(chargelist.data)
             } else {
 //               Result.failure(RuntimeException("repsponse status is ${register.code}"))
                 Result.failure(RuntimeException("repsponse status is "))
             }
         } catch (e: Exception) {
-            if (e is BaseException){
+            if (e is BaseException) {
                 Result.failure(RuntimeException(e.errorMsg))
-            }else{
+            } else {
                 Result.failure(e)
             }
 
@@ -100,6 +95,49 @@ object Respository {
     }
 
 
+    fun addCharge(body: RequestBody) = liveData(Dispatchers.IO) {
+        val result = try {
+            val add = SunnyWeatherNetWork.addCharge(body)
+            //Result这个类kotlin是内置的
+            if (add.code == "0") {
+                Result.success(add.data)
+            } else {
+                Result.failure(RuntimeException("repsponse status is "))
+            }
+        } catch (e: Exception) {
+            if (e is BaseException) {
+                Result.failure(RuntimeException(e.errorMsg))
+            } else {
+                Result.failure(e)
+            }
+
+        }
+        emit(result)
+
+    }
+
+
+
+    fun getChargingData(body: RequestBody) = liveData(Dispatchers.IO) {
+        val result = try {
+            val add = SunnyWeatherNetWork.getChargingData(body)
+            //Result这个类kotlin是内置的
+            if (add.code == "0") {
+                Result.success(add.data)
+            } else {
+                Result.failure(RuntimeException("repsponse status is "))
+            }
+        } catch (e: Exception) {
+            if (e is BaseException) {
+                Result.failure(RuntimeException(e.errorMsg))
+            } else {
+                Result.failure(e)
+            }
+
+        }
+        emit(result)
+
+    }
 
 
 

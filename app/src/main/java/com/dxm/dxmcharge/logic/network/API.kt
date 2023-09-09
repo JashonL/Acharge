@@ -1,5 +1,7 @@
 package com.dxm.dxmcharge.logic.network
 
+import com.dxm.dxmcharge.logic.model.Charge
+import com.dxm.dxmcharge.logic.model.ChargingData
 import com.dxm.dxmcharge.logic.model.Country
 import com.shuoxd.lib.service.account.User
 import okhttp3.RequestBody
@@ -30,6 +32,14 @@ class API {
         @POST("ev/version/1.0.0/api/list")
         fun chargeList(@Body body: RequestBody):Call<HttpResult<List<Charge>>>
 
+        //添加充电桩
+        @POST("ev/version/1.0.0/api/add")
+        fun addCharge(@Body body: RequestBody):Call<HttpResult<String>>
+
+
+        //获取充电数据
+        @POST("ev/version/1.0.0/api/charge/info")
+        fun charge(@Body body: RequestBody):Call<HttpResult<ChargingData>>
 
 
     }

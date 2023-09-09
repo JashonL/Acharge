@@ -3,12 +3,11 @@ package com.dxm.dxmcharge
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.os.Build
+import android.os.LocaleList
 import com.charge.lib.storage.ServiceType
 import com.charge.lib.storage.account.IAccountService
-import com.charge.lib.storage.service.DefaultStorageService
-import com.charge.lib.storage.service.IDeviceService
-import com.charge.lib.storage.service.IStorageService
-import com.charge.lib.storage.service.ServiceManager
+import com.charge.lib.storage.service.*
 import com.charge.lib.util.ToastUtil
 import com.dxm.dxmcharge.device.DefaultDeviceService
 import com.shuoxd.charge.service.account.DefaultAccountService
@@ -70,7 +69,22 @@ class App : Application(), ServiceManager.ServiceInterface {
 
 
 
+    fun initLanguage(context: Context) {
+        val appLanguage = deviceService().getAppLanguage()
+        if (appLanguage == Language.FOLLOW_SYSTEM) {
+            return
+        }
 
+        context.resources?.configuration?.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                LocaleList.setDefault(LocaleList(appLanguage.locale))
+                setLocales(LocaleList(appLanguage.locale))
+            } else {
+                setLocale(appLanguage.locale)
+            }
+            context.resources.updateConfiguration(this, context.resources.displayMetrics)
+        }
+    }
 
 
     /**

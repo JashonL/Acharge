@@ -7,45 +7,57 @@
 
 
     <com.dxm.dxmcharge.widget.ChargeGifView
+        android:id="@+id/charge_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
+        android:id="@+id/light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/lightning"
         app:layout_constraintBottom_toTopOf="@+id/tv_geting_start"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@+id/charge_view"
+        app:layout_constraintRight_toRightOf="@+id/charge_view"
+        app:layout_constraintTop_toTopOf="@+id/charge_view"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 
     <TextView
         android:id="@+id/tv_geting_start"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
         android:paddingStart="@dimen/dp_10"
         android:paddingEnd="@dimen/dp_10"
-        android:text="@string/getting_started"
-        android:textColor="@color/color_text_33"
+        android:text="78%"
+        android:textColor="@color/color_2BB6F7"
         android:textSize="@dimen/size_title_sp_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ac"
+        app:layout_constraintLeft_toLeftOf="@+id/charge_view"
+        app:layout_constraintRight_toRightOf="@+id/charge_view"
+        app:layout_constraintTop_toBottomOf="@+id/light" />
 
 
     <TextView
         android:id="@+id/tv_ac"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
         android:paddingStart="@dimen/dp_10"
         android:paddingEnd="@dimen/dp_10"
-        android:text="@string/getting_started"
-        android:textColor="@color/color_text_33"
-        android:textSize="@dimen/size_title_sp_24"
+        android:text="AC | Prepare"
+        android:textColor="@color/color_2BB6F7"
+        android:textSize="@dimen/size_title_sp_14"
+        app:layout_constraintBottom_toBottomOf="@+id/charge_view"
+        app:layout_constraintLeft_toLeftOf="@+id/charge_view"
+        app:layout_constraintRight_toRightOf="@+id/charge_view"
         app:layout_constraintTop_toBottomOf="@+id/tv_geting_start" />
 
 

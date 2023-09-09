@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dxm.dxmcharge.databinding.ItemLoadingErrorViewHolderBinding
-import com.tianji.ttech.base.BaseViewHolder
+import com.dxm.dxmcharge.base.BaseViewHolder
 
 /**
  * 加载失败

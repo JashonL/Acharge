@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Acharge"
 include ':app'
-
 include ':lib'
+include ':third:scan'
+

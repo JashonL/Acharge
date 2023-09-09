@@ -85,8 +85,12 @@ dependencies {
 
 
     implementation project(path: ':lib')
+    implementation project(path: ':third:scan')
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
-
+    //3D地图SDK，包含了定位功能
+    api 'com.amap.api:3dmap:9.3.1'
+    //地理编码与逆地理编码（经纬度与实际地址的转换）
+    api 'com.amap.api:search:9.3.1'
 
 
 }

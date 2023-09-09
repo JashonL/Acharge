@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.RecyclerView
-import com.tianji.ttech.base.BaseViewHolder
 import com.tianji.ttech.base.viewholder.ItemLoadingEndViewHolder
 import com.dxm.dxmcharge.base.viewholder.ItemLoadingErrorViewHolder
 import com.dxm.dxmcharge.base.viewholder.ItemLoadingViewHolder

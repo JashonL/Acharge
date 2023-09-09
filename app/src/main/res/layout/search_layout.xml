@@ -6,14 +6,16 @@
 
 
     <EditText
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/shape_white_bg"
-        android:hint="@string/hello"
+        android:hint="@string/seach"
         android:paddingStart="@dimen/dp_10"
         android:textSize="@dimen/size_content_sp_14" />
 
     <ImageView
+        android:id="@+id/iv_search"
         android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_30"
         android:layout_alignParentEnd="true"

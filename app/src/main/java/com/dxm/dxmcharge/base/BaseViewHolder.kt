@@ -1,4 +1,4 @@
-package com.tianji.ttech.base
+package com.dxm.dxmcharge.base
 
 import android.view.View
 import androidx.annotation.ColorRes
@@ -9,7 +9,6 @@ import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.dxm.dxmcharge.App
-import com.dxm.dxmcharge.base.BaseActivity
 
 open class BaseViewHolder(
     itemView: View,

@@ -8,8 +8,11 @@ import com.charge.lib.storage.service.IDeviceService
 import com.charge.lib.storage.service.IStorageService
 import com.charge.lib.storage.service.ServiceManager
 import com.dxm.dxmcharge.App
+import com.dxm.dxmcharge.logic.model.Charge
+import com.dxm.dxmcharge.service.charge.ChargeManager
 
-abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay {
+abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterface, IDisplay ,
+    ChargeManager.ServiceInterface {
 
 
     private val display: IDisplay by lazy(LazyThreadSafetyMode.NONE) {
@@ -36,6 +39,29 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
     }
 
 
+
+
+    override fun setChargeList(list: MutableList<Charge>) {
+        ChargeManager.getInstance().setChargeList(list)
+    }
+
+
+    override fun getChargeList(): MutableList<Charge> {
+        return ChargeManager.getInstance().getChargeList()
+    }
+
+
+    override fun setCurrenChargeModel(chargeModel: Charge) {
+        ChargeManager.getInstance().setCurrentCharge(chargeModel)
+
+    }
+
+    override fun getCurrentChargeModel(): Charge? {
+
+        return ChargeManager.getInstance().getCurrentCharge()
+    }
+
+
     override fun showDialog() {
         display.showDialog()
     }
@@ -59,6 +85,10 @@ abstract class BaseActivity : AppCompatActivity(), ServiceManager.ServiceInterfa
     override fun hidePageLoadingView() {
         display.hidePageLoadingView()
     }
+
+
+
+
 
 
     override fun showResultDialog(

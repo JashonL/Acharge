@@ -16,8 +16,8 @@ object SunnyWeatherNetWork {
     suspend fun login(body: RequestBody) = acountService.login(body).await()
     suspend fun getcountry(body: RequestBody) = acountService.countryList(body).await()
     suspend fun getchargelist(body: RequestBody) = acountService.chargeList(body).await()
-
-
+    suspend fun addCharge(body: RequestBody) = acountService.addCharge(body).await()
+    suspend fun getChargingData(body: RequestBody) = acountService.charge(body).await()
 
 
     private suspend fun <T> Call<T>.await(): T {
@@ -29,7 +29,7 @@ object SunnyWeatherNetWork {
 
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     val body = response.body()
-                    if(body != null) continuation.resume(body)
+                    if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(RuntimeException("response body is null"))
                 }
             })

@@ -12,20 +12,23 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_vol"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_text_66"
+            android:layout_height="@dimen/dp_30"
             android:gravity="center"
-            android:textSize="@dimen/size_content_sp_14" />
+            android:text="@string/m94_voltage"
+            android:textColor="@color/color_text_66"
+            android:textSize="@dimen/size_content_sp_12" />
 
 
         <TextView
-            android:id="@+id/tv_geting_start"
+            android:id="@+id/tv_voltage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_30"
             android:gravity="center"
             android:textColor="@color/color_text_33"
-            android:textSize="@dimen/size_content_sp_14" />
+            android:textSize="@dimen/size_content_sp_14"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -38,17 +41,21 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_cur"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_text_66"
+            android:layout_height="@dimen/dp_30"
             android:gravity="center"
+            android:text="@string/m93_current"
+            android:textColor="@color/color_text_66"
             android:textSize="@dimen/size_content_sp_14" />
 
 
         <TextView
+            android:id="@+id/tv_current"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_30"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@color/color_text_33"
             android:textSize="@dimen/size_content_sp_14" />
 
@@ -59,13 +66,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_text_66"
             android:gravity="center"
+            android:textColor="@color/color_text_66"
             android:textSize="@dimen/size_content_sp_14" />
 
 

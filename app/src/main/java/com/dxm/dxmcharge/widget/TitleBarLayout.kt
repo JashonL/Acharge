@@ -43,6 +43,9 @@ class TitleBarLayout @JvmOverloads constructor(
 
 
     private var leftIconClickListener: ((View?) -> Unit)? = null
+
+    private var leftIvClickListener: ((View?) -> Unit)? = null
+
     private var rightButtonClickListener: ((View?) -> Unit)? = null
     private var rightTextClickListener: ((View?) -> Unit)? = null
     private var rightImageClickListener: ((View?) -> Unit)? = null
@@ -81,7 +84,7 @@ class TitleBarLayout @JvmOverloads constructor(
 
                 rigthMenu2Drawable = getDrawable(R.styleable.TitleBarLayout_rightmenu2Icon)
                 rigthMenuDrawable=getDrawable(R.styleable.TitleBarLayout_right_icon)
-                leftDrawable=getDrawable(R.styleable.TitleBarLayout_leftIcon)
+                leftDrawable=getDrawable(R.styleable.TitleBarLayout_barLeftIcon)
 
 
             } finally {
@@ -111,12 +114,11 @@ class TitleBarLayout @JvmOverloads constructor(
             binding.tvRightText.gone()
         }
 
-        if (showleftLogo){
-            binding.ivLeft.visible()
-        }else{
-            binding.ivLeft.gone()
-        }
 
+
+
+
+        showIvLeft()
         showRightImage()
         showFilterIconView()
         showMenu2()
@@ -127,7 +129,29 @@ class TitleBarLayout @JvmOverloads constructor(
         binding.ivRight.setOnClickListener(this)
         binding.tvTitle.setOnClickListener(this)
         binding.ivMenu2.setOnClickListener(this)
+        binding.ivLeft.setOnClickListener(this)
     }
+
+
+
+    private fun showIvLeft() {
+
+        if (showleftLogo){
+            binding.ivLeft.visible()
+        }else{
+            binding.ivLeft.gone()
+        }
+
+        if (leftDrawable != null) {
+            binding.ivLeft.setImageDrawable(leftDrawable)
+        }
+
+        if (rigthMenuDrawable!=null){
+            binding.ivLeft.setImageDrawable(leftDrawable)
+        }
+
+    }
+
 
 
     private fun showMenu2() {
@@ -174,6 +198,10 @@ class TitleBarLayout @JvmOverloads constructor(
 
     override fun onClick(v: View?) {
         when {
+            v===binding.ivLeft->{
+                leftIvClickListener?.invoke(v)
+            }
+
             v === binding.ivBack -> {
                 if (leftIconClickListener == null) {
                     (context as? Activity)?.onBackPressed()
@@ -197,6 +225,11 @@ class TitleBarLayout @JvmOverloads constructor(
                 rightMenu2IvClick?.invoke(v)
             }
         }
+    }
+
+
+    fun setOnLeftIvClickListener(leftIconClickListener: (v: View?) -> Unit) {
+        this.leftIvClickListener = leftIconClickListener
     }
 
 

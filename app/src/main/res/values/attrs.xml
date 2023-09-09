@@ -22,7 +22,7 @@
         <attr name="showRightText" format="boolean" />
         <attr name="showRightImage" format="boolean" />
         <attr name="showFilterIcon" format="boolean" />
-        <attr name="leftIcon" format="reference"/>
+        <attr name="barLeftIcon" format="reference"/>
         <attr name="rightText" format="string" />
         <attr name="rightButtonText" format="string" />
         <attr name="showRightMenu2" format="boolean"/>
@@ -67,5 +67,11 @@
 
     </declare-styleable>
 
+
+
+
+    <declare-styleable name="Tab">
+        <attr name="tabText" format="string" />
+    </declare-styleable>
 
 </resources>

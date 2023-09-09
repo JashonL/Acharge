@@ -35,6 +35,7 @@
             android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:src="@drawable/back_icon"
          />
 
 
@@ -42,6 +43,7 @@
             android:id="@+id/iv_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
         />
 
     </FrameLayout>
