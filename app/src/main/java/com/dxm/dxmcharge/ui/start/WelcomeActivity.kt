@@ -29,6 +29,7 @@ class WelcomeActivity :BaseActivity() {
 
         binding.btWelcome.setOnClickListener{
             LoginActivity.start(this)
+            finish()
         }
 
     }
