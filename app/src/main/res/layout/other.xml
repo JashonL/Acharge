@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_other"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/dp_150"
+    android:background="@color/white"
     android:orientation="horizontal">
 
 
     <LinearLayout
         android:id="@+id/ll_fast"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_80"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_100"
         android:background="@drawable/shape_other"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/ll_locked"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,8 +41,8 @@
 
     <LinearLayout
         android:id="@+id/ll_locked"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_80"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_100"
         android:background="@drawable/shape_other"
         android:gravity="center"
         android:orientation="vertical"
@@ -50,7 +53,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/fast" />
+            android:src="@drawable/locked" />
 
 
         <TextView
@@ -67,8 +70,8 @@
 
     <LinearLayout
         android:id="@+id/ll_delay_charging"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_80"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_100"
         android:background="@drawable/shape_other"
         android:gravity="center"
         android:orientation="vertical"
@@ -79,7 +82,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/fast" />
+            android:src="@drawable/delay_charge" />
 
 
         <TextView
@@ -96,8 +99,8 @@
 
     <LinearLayout
         android:id="@+id/ll_appointment_charge"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_80"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_100"
         android:background="@drawable/shape_other"
         android:gravity="center"
         android:orientation="vertical"
@@ -109,7 +112,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/fast" />
+            android:src="@drawable/appoint" />
 
 
         <TextView

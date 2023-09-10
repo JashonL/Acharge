@@ -141,4 +141,26 @@ object Respository {
 
 
 
+
+    fun action(body: RequestBody) = liveData(Dispatchers.IO) {
+        val result = try {
+            val add = SunnyWeatherNetWork.action(body)
+            //Result这个类kotlin是内置的
+            if (add.code == "0") {
+                Result.success(add.data)
+            } else {
+                Result.failure(RuntimeException("repsponse status is "))
+            }
+        } catch (e: Exception) {
+            if (e is BaseException) {
+                Result.failure(RuntimeException(e.errorMsg))
+            } else {
+                Result.failure(e)
+            }
+
+        }
+        emit(result)
+
+    }
+
 }

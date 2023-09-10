@@ -1,6 +1,7 @@
 package com.dxm.dxmcharge.service.charge
 
 import androidx.annotation.IntDef
+import androidx.annotation.StringDef
 import com.dxm.dxmcharge.App
 import com.dxm.dxmcharge.R
 
@@ -8,68 +9,62 @@ import com.dxm.dxmcharge.R
  * 电枪状态
  */
 
-@IntDef(
-    ChargeStatus.DISCONNECTION,
-
+@StringDef(
     ChargeStatus.UNAVAILABLE,
+    ChargeStatus.SUSPENDEDEV,
     ChargeStatus.AVAILABLE,
-    ChargeStatus.PREPEAR,
+    ChargeStatus.SUSPENDEDEVSE,
     ChargeStatus.CHARGING,
-    ChargeStatus.DEVICE_STOP,
-    ChargeStatus.CAR_STOP,
-    ChargeStatus.CHARGE_FINISH,
-    ChargeStatus.RESERVCE,
-    ChargeStatus.UNAVAILABLE1,
-    ChargeStatus.FAULT,
-    ChargeStatus.NONE
-
+    ChargeStatus.PREPARING,
+    ChargeStatus.FINISHING,
+    ChargeStatus.FAULTED,
+    ChargeStatus.RESERVENOW,
 )
-
 
 
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.VALUE_PARAMETER)
 annotation class ChargeStatus {
     /*
-    	状态，0不可用， 1可使用,2准备充电,3充电中,4充电设施停用,5车辆停用,6充电结束中,7预约中,8不可使用,9故障
+    	Unavailable=不在线
+SuspendedEV=拒绝充电
+Available=可用电桩
+SuspendedEVSE=急停按下
+Charging=正在充电
+Preparing=准备充电
+Finishing=充电完成
+Faulted=电桩故障
+ReserveNow=正在预约
     */
-    companion object{
-        const val DISCONNECTION=-1
-        const val UNAVAILABLE = 0
-        const val AVAILABLE = 1
-        const val PREPEAR = 2
-        const val CHARGING = 3
-        const val DEVICE_STOP = 4
-        const val CAR_STOP = 5
-        const val CHARGE_FINISH = 6
-        const val RESERVCE = 7
-        const val UNAVAILABLE1 = 8
-        const val FAULT = 9
-        const val NONE=10
+    companion object {
+        const val UNAVAILABLE = "Unavailable"
+        const val SUSPENDEDEV = "SuspendedEV"
+        const val AVAILABLE = "Available"
+        const val SUSPENDEDEVSE = "SuspendedEVSE"
+        const val CHARGING = "Charging"
+        const val PREPARING = "Preparing"
+        const val FINISHING = "Finishing"
+        const val FAULTED = "Faulted"
+        const val RESERVENOW = "ReserveNow"
 
-        fun getChargeStatus(@ChargeStatus status: Int): String {
+        fun getChargeStatus(@ChargeStatus status: String?): String {
             return App.instance().getString(
                 when (status) {
-                    DISCONNECTION-> R.string.m195_disconnection
                     UNAVAILABLE -> R.string.m93_unavailable
+                    SUSPENDEDEV -> R.string.suspendedev
                     AVAILABLE -> R.string.m94_available
-                    PREPEAR -> R.string.m95_prepear
+                    SUSPENDEDEVSE -> R.string.suspendedevse
                     CHARGING -> R.string.m96_charging
-                    DEVICE_STOP -> R.string.m102_device_stop
-                    CAR_STOP -> R.string.m97_car_stop
-                    CHARGE_FINISH -> R.string.m98_charge_finish
-                    RESERVCE->R.string.m99_reservce
-                    UNAVAILABLE1->R.string.m93_unavailable
+                    PREPARING -> R.string.m95_prepear
+                    FINISHING -> R.string.m98_charge_finish
+                    FAULTED -> R.string.faulted
+                    RESERVENOW -> R.string.reservenow
                     else -> R.string.m101_fault
                 }
             )
         }
 
     }
-
-
-
-
 
 
 }

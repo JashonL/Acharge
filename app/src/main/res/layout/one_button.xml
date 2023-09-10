@@ -16,7 +16,7 @@
         android:layout_marginBottom="@dimen/dp_30"
         android:background="@drawable/button_blue_gradient"
         android:gravity="center"
-        android:text="@string/sign_up"
+        android:text="@string/m181_start"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/size_content_sp_14" />

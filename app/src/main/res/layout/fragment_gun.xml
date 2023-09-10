@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -27,16 +29,20 @@
                     layout="@layout/power_group" />
 
 
-                <include layout="@layout/charge_view" />
+                <include
+                    android:id="@+id/charge"
+                    layout="@layout/charge_view" />
 
 
-                <include layout="@layout/one_button" />
+                <include
+                    android:id="@+id/button"
+                    layout="@layout/one_button" />
 
 
                 <com.dxm.dxmcharge.widget.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_60"
                     android:background="@color/color_white"
                     android:orientation="horizontal">
 
@@ -44,19 +50,24 @@
                         android:id="@+id/tab_all"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:tabText="@string/charging_info" />
+
 
                     <com.dxm.dxmcharge.widget.Tab
                         android:id="@+id/tab_online"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:tabText="@string/battery_info" />
+
 
                     <com.dxm.dxmcharge.widget.Tab
                         android:id="@+id/tab_offline"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        app:tabText="@string/other" />
 
 
                 </com.dxm.dxmcharge.widget.TabLayout>
@@ -64,13 +75,14 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10">
 
-                    <include layout="@layout/charge_info" />
+                    <include layout="@layout/charge_info" android:id="@+id/chageinfo" />
 
-                    <include layout="@layout/battery_info" />
+                    <include layout="@layout/time_info" android:id="@+id/batinfo"/>
 
-                    <include layout="@layout/other" />
+                    <include layout="@layout/other" android:id="@+id/other"/>
 
                 </FrameLayout>
 

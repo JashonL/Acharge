@@ -1,26 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_charge"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical">
 
 
+    <!--充电方式-->
     <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_type"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/charge_type"
+        app:showLeftIcon="true"
+        app:showSubName="true"
+        app:title="@string/m128_power" />
 
 
-    <com.dxm.dxmcharge.widget.DataItemView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@color/gray_eeeeeee" />
 
-    <com.dxm.dxmcharge.widget.DataItemView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
+    <!--已充电量-->
     <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_charge_ele"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/m118_electricity"
+        app:leftIcon="@drawable/charge_ele"
+        app:showLeftIcon="true"
+        app:showSubName="true"
+        app:title="@string/m128_power" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        app:showSubName="true"
+        android:background="@color/gray_eeeeeee" />
+
+
+    <!--已充时长-->
+    <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_charge_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/m119_time"
+        app:showSubName="true"
+        app:leftIcon="@drawable/charge_time"
+        app:showLeftIcon="true" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@color/gray_eeeeeee" />
+
+    <!--已充金额-->
+    <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_charge_cost"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/m120_money"
+        app:showSubName="true"
+        app:leftIcon="@drawable/charge_cost"
+        app:showLeftIcon="true" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@color/gray_eeeeeee" />
+
+    <!--充电方式-->
+    <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_charge_rate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/m129_rate"
+        app:showSubName="true"
+        app:leftIcon="@drawable/charge_cost"
+        app:showLeftIcon="true" />
 
 
 </LinearLayout>

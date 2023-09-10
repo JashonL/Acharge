@@ -52,7 +52,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:paddingStart="@dimen/dp_10"
         android:paddingEnd="@dimen/dp_10"
-        android:text="@string/nearest_station"
+        android:text="@string/my_device"
         android:textColor="@color/black_333333"
         android:textSize="@dimen/size_content_sp_14"
         android:textStyle="bold"

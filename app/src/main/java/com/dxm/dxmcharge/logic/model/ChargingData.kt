@@ -1,25 +1,27 @@
 package com.dxm.dxmcharge.logic.model
 
 data class ChargingData(
-    val Temperature: Int?,
+    val Temperature: Double?,
     val chargeEndTime: String?,
     val chargeId: String?,
-    val connectorId: Int?,
-    val cost: Int?,
+    val connectorId: Double?,
+    val cost: Double?,
     val ctime: Int?,
-    val ctype: Int?,
+    val ctype: Double?,
     val current: Double?,
     val energy: Double?,
-    val online: Int?,
+    val online: Double?,
     val orderId: String?,
-    val order_status: Int?,
-    val rate: Int?,
+    val order_status: Double?,
+    val rate: Double?,
     val status: String?,
     val symbol: String?,
     val sysEndTime: Long?,
     val sysStartTime: Long?,
-    val transactionId: Int?,
+    val transactionId: Double?,
     val unit: String?,
     val userId: String?,
-    val voltage: Double?
+    val voltage: Double?,
+    val ckey:String?,
+    val cValue: Double? = 0.0
 )

@@ -34,22 +34,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_geting_start"
+                    android:id="@+id/tv_device_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
                     android:paddingStart="@dimen/dp_10"
                     android:paddingEnd="@dimen/dp_10"
-                    android:text="@string/ev_charging"
                     android:textColor="@color/color_text_33"
                     android:textSize="@dimen/size_content_sp_14" />
 
                 <TextView
+                    android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="@dimen/dp_10"
                     android:paddingEnd="@dimen/dp_10"
-                    android:text="2.5km"
                     android:textColor="@color/color_text_99"
                     android:textSize="@dimen/size_content_sp_12" />
 

@@ -23,6 +23,7 @@ import com.dxm.dxmcharge.logic.model.Charge
 import com.dxm.dxmcharge.widget.itemdecoration.DividerItemDecoration
 import com.dxm.dxmcharge.base.BaseViewHolder
 import com.dxm.dxmcharge.base.OnItemClickListener
+import com.dxm.dxmcharge.base.viewholder.EmptyViewHolder
 import com.dxm.dxmcharge.ui.device.monitor.ChargeAactivityMonitor
 
 class ChargeListActivity : BaseActivity() {
@@ -77,6 +78,9 @@ class ChargeListActivity : BaseActivity() {
 
 
     private fun initViews() {
+
+        bind.tvSeemYou.text = accountService().user()?.userId + "!"
+
         bind.title.setOnLeftIvClickListener {
             //添加充电桩
             AddYourChargeActivity.start(this)
@@ -106,15 +110,17 @@ class ChargeListActivity : BaseActivity() {
             freshChage()
         }
 
+
+
+        showDialog()
         freshChage()
 
 
     }
 
 
-    private fun freshChage(chargeId:String?="") {
+    private fun freshChage(chargeId: String? = "") {
         val language = LanUtils.getLanguage(this)
-        showDialog()
         ChargeListModel.getChargelist(
             "list", accountService().user()?.userId, chargeId,
             language.toString()
@@ -127,7 +133,7 @@ class ChargeListActivity : BaseActivity() {
         ChargeListModel.newLiveData.observe(this) {
             dismissDialog()
             val provinceList = it.getOrNull()
-            if (!provinceList.isNullOrEmpty()) {
+            if (provinceList != null) {
                 (bind.rlvCharge.adapter as Adapter).refresh(provinceList)
             } else {
                 val message = it.exceptionOrNull()?.message
@@ -146,6 +152,10 @@ class ChargeListActivity : BaseActivity() {
             const val ITEM_LEFT = 0
             const val ITEM_RIGHT = 1
 
+
+            const val ADAPTER_DATA_EMPTY = -2
+
+
         }
 
 
@@ -153,7 +163,9 @@ class ChargeListActivity : BaseActivity() {
             parent: ViewGroup,
             viewType: Int
         ): BaseViewHolder {
-            return if (viewType == ITEM_LEFT) {
+            return if (viewType == ADAPTER_DATA_EMPTY) {
+                EmptyViewHolder.create(parent)
+            } else if (viewType == ITEM_LEFT) {
                 ChargeLeftViewHolder.create(parent, this)
             } else {
                 ChargeRightViewHolder.create(parent, this)
@@ -161,6 +173,14 @@ class ChargeListActivity : BaseActivity() {
         }
 
         override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+
+            if (holder is ChargeRightViewHolder) {
+                holder.bindData(chargeList[position], position)
+            } else if (holder is ChargeLeftViewHolder) {
+                holder.bindData(chargeList[position], position)
+            }
+
+
 //            holder.bindData(chargeList[position], position)
         }
 
@@ -190,6 +210,9 @@ class ChargeListActivity : BaseActivity() {
 
 
         override fun getItemViewType(position: Int): Int {
+            if (chargeList.isEmpty()) {
+                return ADAPTER_DATA_EMPTY
+            }
             return position % 2
         }
 
@@ -245,7 +268,8 @@ class ChargeListActivity : BaseActivity() {
 
 
         fun bindData(chargeModel: Charge, position: Int) {
-
+            binding.tvDeviceName.text = chargeModel.chargeId
+            binding.tvStatus.text = chargeModel.model
 
         }
 
@@ -277,6 +301,8 @@ class ChargeListActivity : BaseActivity() {
 
 
         fun bindData(chargeModel: Charge, position: Int) {
+            binding.tvDeviceName.text = chargeModel.chargeId
+            binding.tvStatus.text = chargeModel.model
         }
 
 

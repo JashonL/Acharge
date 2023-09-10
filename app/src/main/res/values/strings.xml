@@ -161,6 +161,14 @@
     <string name="m98_charge_finish">charging finish</string>
     <string name="m99_reservce">reserving…</string>
     <string name="m100_unavailable1">offline</string>
+    <string name="suspendedev">SuspendedEV</string>
+    <string name="suspendedevse">SUSPENDEDEVSE</string>
+    <string name="faulted">FAULTED</string>
+    <string name="reservenow">RESERVENOW</string>
+
+
+
+
 
     <string name="m101_fault">error</string>
     <string name="m102_device_stop">charger unavailable</string>
@@ -192,7 +200,7 @@
     <string name="m126_done">Done</string>
     <string name="m127_try_now">Experience immediately</string>
     <string name="m128_power">Power</string>
-    <string name="m129_rate">Set Charging Rate</string>
+    <string name="m129_rate">Rate</string>
     <string name="m130_confirm">Ok</string>
 
     <string name="m131_set_success">success</string>
@@ -322,5 +330,14 @@ confirmation after plug in your car。</string>
 
     <string name="seach">Search</string>
     <string name="gun">GUN</string>
+    <string name="charging_info">Charging Info</string>
+    <string name="battery_info">Battery Info</string>
+    <string name="other">Other</string>
+    <string name="charge_type">Charge type</string>
+
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="my_device">My Device</string>
+    <string name="wait_dev">敬请期待！</string>
 
 </resources>

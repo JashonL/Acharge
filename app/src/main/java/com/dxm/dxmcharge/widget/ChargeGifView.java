@@ -21,7 +21,7 @@ public class ChargeGifView extends View {
     private final int DEFAULT_WIDTH = 550;//默认控件宽度
     private final int DEFAULT_HEIGHT = 550;//默认控件高度
     private final int DEFAULT_STROKE_WIDTH = 20;//默认圆环厚度
-    private final int DEFAULT_SCALE_WIDTH = 5;//刻度
+    private final int DEFAULT_SCALE_WIDTH = 10;//刻度
     private final int DEFAULT_SCALE_ANGLE = 15;//刻度
 
 
@@ -52,6 +52,9 @@ public class ChargeGifView extends View {
     private int scales_width;
 
 
+    private ObjectAnimator waveShiftAnim;
+    public boolean isAnim;
+
 
     public ChargeGifView(Context context) {
         this(context, null);
@@ -70,10 +73,10 @@ public class ChargeGifView extends View {
     private void initAttr(Context context, @Nullable AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ChargeGifView);
         scaleAngle = typedArray.getInt(R.styleable.ChargeGifView_charge_angle, DEFAULT_SCALE_ANGLE);
-        circle_color=typedArray.getColor(R.styleable.ChargeGifView_charge_circle_color, ContextCompat.getColor(context,R.color.color_2BB6F7));
-        circle_width=typedArray.getInt(R.styleable.ChargeGifView_charge_circle_width,DEFAULT_STROKE_WIDTH);
-        scales_color=typedArray.getColor(R.styleable.ChargeGifView_charge_scales_color,ContextCompat.getColor(context,R.color.color_2BB6F7));
-        scales_width=typedArray.getInt(R.styleable.ChargeGifView_charge_scales_color,DEFAULT_SCALE_WIDTH);
+        circle_color = typedArray.getColor(R.styleable.ChargeGifView_charge_circle_color, ContextCompat.getColor(context, R.color.color_2BB6F7));
+        circle_width = typedArray.getInt(R.styleable.ChargeGifView_charge_circle_width, DEFAULT_STROKE_WIDTH);
+        scales_color = typedArray.getColor(R.styleable.ChargeGifView_charge_scales_color, ContextCompat.getColor(context, R.color.color_2BB6F7));
+        scales_width = typedArray.getInt(R.styleable.ChargeGifView_charge_scales_color, DEFAULT_SCALE_WIDTH);
         typedArray.recycle();
 
     }
@@ -188,15 +191,28 @@ public class ChargeGifView extends View {
      * 设置温度值并启动动画（插值器：LinearInterpolator）
      */
     public void setValueAndStartAnim() {
-        ObjectAnimator waveShiftAnim = ObjectAnimator.ofInt(this, "current", 0, scaleNum);
-        waveShiftAnim.addUpdateListener(animation -> {
-            postInvalidate();
-        });
-        waveShiftAnim.setRepeatCount(-1);
-        waveShiftAnim.setDuration(5 * 1000);
-        waveShiftAnim.setInterpolator(new LinearInterpolator());
-        waveShiftAnim.start();
+        if (!isAnim) {
+            waveShiftAnim = ObjectAnimator.ofInt(this, "current", 0, scaleNum);
+            waveShiftAnim.addUpdateListener(animation -> {
+                postInvalidate();
+            });
+            waveShiftAnim.setRepeatCount(-1);
+            waveShiftAnim.setDuration(5 * 1000);
+            waveShiftAnim.setInterpolator(new LinearInterpolator());
+            waveShiftAnim.start();
+            isAnim = true;
+        }
+
     }
 
+
+    public void stopAnim() {
+        if (isAnim) {
+            isAnim = false;
+            waveShiftAnim.pause();
+            current = 0;
+            invalidate();
+        }
+    }
 
 }

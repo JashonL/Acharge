@@ -38,8 +38,14 @@ class API {
 
 
         //获取充电数据
-        @POST("ev/version/1.0.0/api/charge/info")
+        @POST("/ev/version/1.0.0/charge/info/")
         fun charge(@Body body: RequestBody):Call<HttpResult<ChargingData>>
+
+
+
+        //开始充电
+        @POST("/ev/version/1.0.0/cmd/action/")
+        fun action(@Body body: RequestBody):Call<HttpResult<String>>
 
 
     }

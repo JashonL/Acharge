@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_bat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/start_time"
+        app:leftIcon="@drawable/charge_time"
+        app:showLeftIcon="true"
+        app:showSubName="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@color/gray_eeeeeee" />
+
+
+    <com.dxm.dxmcharge.widget.DataItemView
+        android:id="@+id/div_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        app:itemName="@string/end_time"
+        app:leftIcon="@drawable/charge_time"
+        app:showLeftIcon="true"
+        app:showSubName="true" />
+
+
+</LinearLayout>
