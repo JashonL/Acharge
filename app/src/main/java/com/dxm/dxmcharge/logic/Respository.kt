@@ -24,7 +24,11 @@ object Respository {
 
             }
         } catch (e: Exception) {
-            Result.failure(e)
+            if (e is BaseException) {
+                Result.failure(RuntimeException(e.errorMsg))
+            } else {
+                Result.failure(e)
+            }
         }
         emit(result)
 

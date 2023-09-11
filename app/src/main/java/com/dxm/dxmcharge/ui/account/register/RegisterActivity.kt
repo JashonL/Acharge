@@ -12,9 +12,11 @@ import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityRegisterBinding
 import com.dxm.dxmcharge.ui.account.login.LoginModel
+import com.dxm.dxmcharge.ui.device.ChargeListActivity
 import com.dxm.dxmcharge.widget.TitleEditext
 import com.dxm.dxmcharge.widget.popuwindow.ListPopModel
 import com.dxm.dxmcharge.widget.popuwindow.ListPopuwindow
+import com.shuoxd.lib.service.account.User
 
 class RegisterActivity : BaseActivity(), View.OnClickListener {
 
@@ -86,7 +88,32 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         }
 
 
+
+        logViewModel.newLoginLiveData.observe(this) {
+            dismissDialog()
+            val orNull = it.getOrNull()
+            if (orNull != null) {
+                loginSuccess(orNull)
+            } else {
+                val message = it.exceptionOrNull()?.message
+                showResultDialog(message, null, null)
+
+
+            }
+        }
+
     }
+
+
+
+    private fun loginSuccess(user: User?) {
+        user?.password = binding.etPassword.getText()
+        accountService().saveUserInfo(user)
+        ChargeListActivity.start(this)
+        finish()
+
+    }
+
 
 
     private fun login() {
