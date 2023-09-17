@@ -338,6 +338,18 @@ confirmation after plug in your car。</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
     <string name="my_device">My Device</string>
+
+    <string name="delayed_charging">Delayed charging</string>
+    <string name="default_delay_time">Default delay time</string>
+    <string name="start_charging">Starting charging in 600 seconds</string>
+
+    <string name="start_charge_second">Start charging in %s seconds</string>
+    <string name="random_delay">Random delay</string>
+    <string name="to_adjust_the">To adjust the settings, please turn off random delay first. Once completed, please confirm the setting changes and then turn on random delay again</string>
+
+    <string name="input_delay_time">Input Delay Time</string>
+
+
     <string name="wait_dev">敬请期待！</string>
 
 </resources>

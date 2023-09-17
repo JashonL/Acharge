@@ -5,11 +5,12 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.dxm.dxmcharge.App
 import com.dxm.dxmcharge.R
+import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.ui.account.login.LoginActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LuanchActivity : AppCompatActivity() {
+class LuanchActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -19,6 +19,7 @@ object SunnyWeatherNetWork {
     suspend fun addCharge(body: RequestBody) = acountService.addCharge(body).await()
     suspend fun getChargingData(body: RequestBody) = acountService.charge(body).await()
     suspend fun action(body: RequestBody) = acountService.action(body).await()
+    suspend fun delayStartTransaction(body: RequestBody) = acountService.delayStartTransaction(body).await()
 
 
 

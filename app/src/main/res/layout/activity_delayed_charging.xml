@@ -7,40 +7,58 @@
     android:orientation="vertical"
     tools:context=".ui.settting.DelayedChargingActivity">
 
-    <include layout="@layout/title_bar_layout" />
+<!--    <com.dxm.dxmcharge.widget.TitleBarLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showRightButton="false"
+        app:showRightText="true"
+        app:titleText="@string/delayed_charging" />-->
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_white_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/cb_default"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/checkbox1"
+            android:button="@null"
+            android:scaleX="0.8"
+            android:scaleY="0.8" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_medium" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/default_delay_time"
+                android:textColor="@color/black_333333"
+                android:textSize="@dimen/size_content_sp_14" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_medium" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/start_charging"
+                android:textColor="@color/color_text_66"
+                android:textSize="@dimen/size_content_sp_12" />
 
 
         </LinearLayout>
@@ -51,38 +69,59 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_white_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/cb_setting"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/checkbox1"
+            android:button="@null"
+            android:scaleX="0.8"
+            android:scaleY="0.8" />
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_medium" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/m38_setting"
+                android:textColor="@color/black_333333"
+                android:textSize="@dimen/size_content_sp_14" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_medium" />
+                android:id="@+id/tv_start_charging"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/start_charge_second"
+                android:textColor="@color/black_666666"
+                android:textSize="@dimen/size_content_sp_12" />
 
 
         </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/icon_chevron" />
 
 
     </LinearLayout>
@@ -91,23 +130,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_medium" />
-
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/random_delay"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/size_content_sp_14" />
 
 
         <CheckBox
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox2_checked" />
 
 
     </LinearLayout>
@@ -116,10 +157,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/dp_20"
+        android:gravity="center_vertical"
+        android:text="@string/to_adjust_the"
+        android:textColor="@color/color_text_66"
         android:textSize="@dimen/text_medium" />
 
 
+
+    <Button
+        android:id="@+id/bt_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:background="@drawable/button_blue_gradient"
+        android:gravity="center"
+        android:text="@string/m166_save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_content_sp_14" />
 
 </LinearLayout>

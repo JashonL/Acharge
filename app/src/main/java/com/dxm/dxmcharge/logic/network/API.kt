@@ -48,6 +48,12 @@ class API {
         fun action(@Body body: RequestBody):Call<HttpResult<String>>
 
 
+
+        //延时充电功
+        @POST("/ev/version/1.0.0/delayStartTransaction")
+        fun delayStartTransaction(@Body body: RequestBody):Call<HttpResult<String>>
+
+
     }
 
 }

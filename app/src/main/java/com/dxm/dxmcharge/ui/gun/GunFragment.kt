@@ -18,6 +18,7 @@ import com.dxm.dxmcharge.databinding.FragmentGunBinding
 import com.dxm.dxmcharge.extend.gone
 import com.dxm.dxmcharge.extend.visible
 import com.dxm.dxmcharge.service.charge.ChargeStatus
+import com.dxm.dxmcharge.ui.settting.DelayedChargingActivity
 import com.dxm.dxmcharge.util.DateUtils
 import com.dxm.dxmcharge.util.ValueUtil
 import com.dxm.dxmcharge.widget.OnTabSelectedListener
@@ -150,7 +151,8 @@ class GunFragment : BaseFragment() {
             ToastUtil.show(getString(R.string.wait_dev))
         }
         bind.other.llDelayCharging.setOnClickListener {
-            ToastUtil.show(getString(R.string.wait_dev))
+            val i = bind.tabLayout.getSelectTabPosition() + 1
+            DelayedChargingActivity.start(context,i.toString())
         }
 
 

@@ -114,6 +114,19 @@ object DateUtils {
         return cal.time
     }
 
+
+
+    /**
+     * 增加或者减少日期
+     */
+    fun addDateTimes(date: Date, min: Int): Date {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.add(Calendar.MINUTE, min)
+        return cal.time
+    }
+
+
     fun convertDate(date: Long, format: SimpleDateFormat): String {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = date
