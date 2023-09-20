@@ -348,6 +348,13 @@ confirmation after plug in your car。</string>
     <string name="to_adjust_the">To adjust the settings, please turn off random delay first. Once completed, please confirm the setting changes and then turn on random delay again</string>
 
     <string name="input_delay_time">Input Delay Time</string>
+    <string name="duration">Duration</string>
+    <string name="presets">Presets</string>
+    <string name="time_on">Time-on</string>
+
+
+
+    <string name="preset_charging">Preset charging</string>
 
 
     <string name="wait_dev">敬请期待！</string>
