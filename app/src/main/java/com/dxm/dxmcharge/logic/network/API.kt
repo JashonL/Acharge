@@ -3,6 +3,7 @@ package com.dxm.dxmcharge.logic.network
 import com.dxm.dxmcharge.logic.model.Charge
 import com.dxm.dxmcharge.logic.model.ChargingData
 import com.dxm.dxmcharge.logic.model.Country
+import com.dxm.dxmcharge.logic.model.ReserveNow
 import com.shuoxd.lib.service.account.User
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -54,9 +55,15 @@ class API {
         fun delayStartTransaction(@Body body: RequestBody):Call<HttpResult<String>>
 
 
-        //延时充电功
+        //解锁
         @POST("/ev/version/1.0.0/unlocked")
         fun unlocked(@Body body: RequestBody):Call<HttpResult<String>>
+
+
+
+        //预约
+        @POST("/ev/version/1.0.0/ReserveNow")
+        fun reserveNow(@Body body: RequestBody):Call<HttpResult<ReserveNow>>
 
 
     }

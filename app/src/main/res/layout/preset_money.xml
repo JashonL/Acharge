@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/ll_money"
     android:orientation="vertical">
 
 
@@ -34,6 +35,7 @@
             android:padding="@dimen/dp_5">
 
             <TextView
+                android:id="@+id/tv_symbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -50,6 +52,7 @@
 
 
             <EditText
+                android:id="@+id/et_cost"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
@@ -86,7 +89,7 @@
 
 
         <EditText
-            android:id="@+id/et_duration_time"
+            android:id="@+id/et_start_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

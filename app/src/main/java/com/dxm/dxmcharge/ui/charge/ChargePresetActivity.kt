@@ -1,64 +1,271 @@
 package com.dxm.dxmcharge.ui.charge
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.EditText
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import com.charge.lib.util.DateUtils
 import com.charge.lib.util.LanUtils
 import com.charge.lib.util.ToastUtil
+import com.charge.lib.view.dialog.DatePickerFragment
+import com.charge.lib.view.dialog.OnDateSetListener
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityChargePresetBinding
-import com.dxm.dxmcharge.databinding.AddYourChargeBinding
-import com.dxm.dxmcharge.ui.common.fragment.RequestPermissionHub
-import com.dxm.dxmcharge.ui.device.AddYourChargeActivity
+import com.dxm.dxmcharge.extend.gone
+import com.dxm.dxmcharge.extend.visible
+import java.util.*
 
-class ChargePresetActivity : BaseActivity() ,OnClickListener{
+class ChargePresetActivity : BaseActivity(), OnClickListener {
 
 
     companion object {
-        fun start(context: Context?) {
-            context?.startActivity(Intent(context, ChargePresetActivity::class.java))
+        fun start(context: Context?, connectorId: String) {
+            context?.startActivity(Intent(context, ChargePresetActivity::class.java).apply {
+                putExtra("connectorId", connectorId)
+            })
         }
     }
 
 
     //预约类型1时长  2金额 3电量
-    private var preset = 1;
+    private var cKey = ""
+    private var connectorId: String? = ""
 
+
+    private val chargePresetViewModel by lazy { ViewModelProvider(this)[ChargePresetViewModel::class.java] }
 
     private lateinit var binding: ActivityChargePresetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityChargePresetBinding.inflate(layoutInflater)
+        binding = ActivityChargePresetBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViews()
-        showViewsByPreset()
+        initLiseners()
+        initData()
     }
+
+    private fun initLiseners() {
+        binding.ele.llTimeOn.setOnClickListener(this)
+        binding.money.llTimeOn.setOnClickListener(this)
+        binding.duration.llTimeOn.setOnClickListener(this)
+        binding.none.llTimeOn.setOnClickListener(this)
+        binding.btLogin.setOnClickListener(this)
+    }
+
+    private fun initData() {
+        connectorId = intent.getStringExtra("connectorId")
+
+        val chargeId = getCurrentChargeModel()?.chargeId
+        val language = LanUtils.getLanguage(this)
+        chargePresetViewModel.reserveNow(
+            "ReserveNow",
+            accountService().user()?.userId,
+            chargeId,
+            connectorId,
+            language.toString()
+        )
+
+
+        chargePresetViewModel.newLiveData.observe(this) {
+            dismissDialog()
+            val orNull = it.getOrNull()
+            if (orNull != null) {
+                cKey = orNull.cKey
+                showViewsByPreset()
+                //预约电量
+                val cValue = orNull.cValue
+                //定额
+                val cValue2 = orNull.cValue2
+                //开始时间
+                val expiryDate = orNull.expiryDate
+
+                binding.money.etCost.setText(cValue2)
+                if (cKey == "G_SetEnergy") {
+                    binding.ele.etCvalue.setText(cValue)
+                    binding.ele.etStartTime.setText(expiryDate)
+
+                } else if (cKey == "G_SetTime") {
+                    binding.duration.etCvalue.setText(cValue)
+                    binding.duration.etStartTime.setText(expiryDate)
+                } else if (cKey == "G_SetAmount") {
+                    binding.money.etStartTime.setText(expiryDate)
+                } else {
+                    binding.none.etStartTime.setText(expiryDate)
+                }
+
+
+            } else {
+                val message = it.exceptionOrNull()?.message
+                ToastUtil.show(message)
+            }
+
+
+        }
+
+
+    }
+
 
     private fun initViews() {
-
+        showViewsByPreset()
 
     }
-
-
-
 
 
     override fun onClick(p0: View?) {
+        when {
+            p0 === binding.cardCost -> {
+                cKey = if (cKey == "G_SetAmount") {
+                    ""
+                } else {
+                    "G_SetAmount"
+                }
+                setChoose()
+            }
 
+            p0 === binding.cardDuration -> {
+                cKey = if (cKey == "G_SetTime") {
+                    ""
+                } else {
+                    "G_SetAmount"
+                }
+                setChoose()
+            }
+            p0 === binding.cardEle -> {
+                cKey = if (cKey == "G_SetEnergy") {
+                    ""
+                } else {
+                    "G_SetEnergy"
+                }
+                setChoose()
+            }
+
+            p0 === binding.ele.llTimeOn -> {
+                selectDate(binding.ele.etStartTime)
+            }
+
+            p0 === binding.money.llTimeOn -> {
+                selectDate(binding.money.etStartTime)
+
+            }
+            p0 === binding.duration.llTimeOn -> {
+                selectDate(binding.duration.etStartTime)
+            }
+            p0 === binding.none.llTimeOn -> {
+                selectDate(binding.none.etStartTime)
+            }
+            p0 === binding.btLogin -> {
+
+
+
+
+
+            }
+        }
+    }
+
+
+    public fun setChoose() {
+        when (cKey) {
+            "G_SetAmount" -> {
+                binding.cardCost.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_28BEF1
+                    )
+                )
+                binding.cardDuration.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+
+            }
+            "G_SetEnergy" -> {
+                binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                binding.cardDuration.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.cardEle.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_28BEF1
+                    )
+                )
+            }
+            "G_SetTime" -> {
+                binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                binding.cardDuration.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_28BEF1
+                    )
+                )
+                binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            }
+            else -> {
+                binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                binding.cardDuration.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            }
+        }
+
+
+    }
+
+
+    private fun selectDate(etView: EditText) {
+        DatePickerFragment.show(supportFragmentManager, object : OnDateSetListener {
+            override fun onDateSet(date: Date) {
+                val yyyyMmDdHhMmSsSssFormat = DateUtils.yyyy_MM_dd_HH_mm_ss_SSS_format(date)
+                etView.setText(yyyyMmDdHhMmSsSssFormat)
+            }
+        })
     }
 
 
     private fun showViewsByPreset() {
-        when (preset) {
-            1 -> {}
-            2 -> {}
-            3 -> {}
+        when (cKey) {
+            "G_SetAmount" -> {
+                binding.duration.llDuration.visible()
+                binding.money.llMoney.gone()
+                binding.ele.llEle.gone()
+                binding.none.llNone.gone()
+            }
+            "G_SetEnergy" -> {
+                binding.duration.llDuration.gone()
+                binding.money.llMoney.visible()
+                binding.ele.llEle.gone()
+                binding.none.llNone.gone()
+            }
+            "G_SetTime" -> {
+                binding.duration.llDuration.gone()
+                binding.money.llMoney.gone()
+                binding.ele.llEle.visible()
+                binding.none.llNone.gone()
+            }
+            else -> {
+                binding.duration.llDuration.gone()
+                binding.money.llMoney.gone()
+                binding.ele.llEle.gone()
+                binding.none.llNone.visible()
+            }
         }
 
 

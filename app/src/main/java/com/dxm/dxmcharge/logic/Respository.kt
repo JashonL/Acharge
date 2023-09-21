@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.shuoxd.lib.service.account.User
 import kotlinx.coroutines.Dispatchers
 import okhttp3.RequestBody
+import kotlin.coroutines.CoroutineContext
 
 object Respository {
 
@@ -121,7 +122,6 @@ object Respository {
     }
 
 
-
     fun getChargingData(body: RequestBody) = liveData(Dispatchers.IO) {
         val result = try {
             val add = SunnyWeatherNetWork.getChargingData(body)
@@ -142,8 +142,6 @@ object Respository {
         emit(result)
 
     }
-
-
 
 
     fun action(body: RequestBody) = liveData(Dispatchers.IO) {
@@ -189,6 +187,59 @@ object Respository {
 
     }
 
+
+    fun reserveNow(body: RequestBody) = fire(Dispatchers.IO) {
+
+        val add = SunnyWeatherNetWork.reserveNow(body)
+        //Result这个类kotlin是内置的
+        if (add.code == "0") {
+            Result.success(add.data)
+        } else {
+            Result.failure(RuntimeException("repsponse status is "))
+        }
+
+
+/*        val result = try {
+            val add = SunnyWeatherNetWork.reserveNow(body)
+            //Result这个类kotlin是内置的
+            if (add.code == "0") {
+                Result.success(add.data)
+            } else {
+                Result.failure(RuntimeException("repsponse status is "))
+            }
+        } catch (e: Exception) {
+            if (e is BaseException) {
+                Result.failure(RuntimeException(e.errorMsg))
+            } else {
+                Result.failure(e)
+            }
+
+        }
+        emit(result)*/
+
+    }
+
+
+
+
+
+
+
+
+    private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
+        liveData<Result<T>>(context) {
+            val result = try {
+                block()
+            } catch (e: Exception) {
+                if (e is BaseException) {
+                    Result.failure(RuntimeException(e.errorMsg))
+                } else {
+                    Result.failure<T>(e)
+                }
+
+            }
+            emit(result)
+        }
 
 
 }

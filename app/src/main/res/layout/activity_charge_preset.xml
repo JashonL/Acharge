@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".ui.charge.ChargePresetActivity">
 
-    <com.dxm.dxmcharge.widget.TitleBarLayout
+<!--    <com.dxm.dxmcharge.widget.TitleBarLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleText="@string/presets" />
+        app:titleText="@string/presets" />-->
 
 
     <LinearLayout
@@ -136,12 +136,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/duration"
+            layout="@layout/preset_duration" />
 
-        <include layout="@layout/preset_duration" />
+        <include
+            android:id="@+id/money"
+            layout="@layout/preset_money" />
 
-        <include layout="@layout/preset_money" />
+        <include
+            android:id="@+id/ele"
+            layout="@layout/preset_ele" />
 
-        <include layout="@layout/preset_ele" />
+        <include
+            android:id="@+id/none"
+            layout="@layout/preset_none" />
 
 
     </FrameLayout>

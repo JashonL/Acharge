@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/ll_duration"
     android:orientation="vertical">
 
 
@@ -26,7 +27,7 @@
 
 
         <EditText
-            android:id="@+id/et_cvalue_duration"
+            android:id="@+id/et_cvalue"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -70,7 +71,7 @@
 
 
         <EditText
-            android:id="@+id/et_duration_time"
+            android:id="@+id/et_start_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
