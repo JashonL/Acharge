@@ -1,15 +1,11 @@
 package com.dxm.dxmcharge.logic.network
 
-import com.dxm.dxmcharge.logic.model.Charge
-import com.dxm.dxmcharge.logic.model.ChargingData
-import com.dxm.dxmcharge.logic.model.Country
-import com.dxm.dxmcharge.logic.model.ReserveNow
+import com.dxm.dxmcharge.base.PageModel
+import com.dxm.dxmcharge.logic.model.*
 import com.shuoxd.lib.service.account.User
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 class API {
@@ -61,10 +57,28 @@ class API {
 
 
 
+
+        //定额充电
+        @POST("/ev/version/1.0.0/remoteStartTransaction")
+        fun remoteStartTransaction(@Body body: RequestBody):Call<HttpResult<String>>
+
+
         //预约
         @POST("/ev/version/1.0.0/ReserveNow")
         fun reserveNow(@Body body: RequestBody):Call<HttpResult<ReserveNow>>
 
+
+
+        //设置预约
+        @POST("/ev/version/1.0.0/ReserveNow")
+        fun setReserveNow(@Body body: RequestBody):Call<HttpResult<String>>
+
+
+
+
+        //获取充电记录
+        @POST("/ev/version/1.0.0/chargeRecord")
+        fun chargeRecord(@Body body: RequestBody):Call<HttpResult<PageModel<Recorder>>>
 
     }
 

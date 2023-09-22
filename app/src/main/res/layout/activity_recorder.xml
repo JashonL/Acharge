@@ -4,28 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.record.RecorderActivity">
+    android:orientation="vertical">
+
+
 
     <com.dxm.dxmcharge.widget.TitleBarLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:showRightText="true"
-        app:titleText="@string/Register" />
+        app:titleText="@string/m117_record" />
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_title"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_pull"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
-        app:layout_constraintTop_toBottomOf="@+id/tv_subtitle"
-        app:tabIndicatorColor="@color/nocolor"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextAppearance="@style/style_tab_layout2"/>
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rlv_record"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_recorder" />
 
 
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="160dp"
+                android:text="@string/m121_norecord"
+                android:textColor="@color/color_text_66"
+                android:textSize="@dimen/size_content_sp_14"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
 
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

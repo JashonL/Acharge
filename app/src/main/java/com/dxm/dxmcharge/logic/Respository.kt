@@ -188,6 +188,23 @@ object Respository {
     }
 
 
+
+
+
+    fun remoteStartTransaction(body: RequestBody) = fire(Dispatchers.IO) {
+
+        val add = SunnyWeatherNetWork.remoteStartTransaction(body)
+        //Result这个类kotlin是内置的
+        if (add.code == "0") {
+            Result.success(add.data)
+        } else {
+            Result.failure(RuntimeException("repsponse status is "))
+        }
+    }
+
+
+
+
     fun reserveNow(body: RequestBody) = fire(Dispatchers.IO) {
 
         val add = SunnyWeatherNetWork.reserveNow(body)
@@ -220,21 +237,51 @@ object Respository {
     }
 
 
+    fun setReserveNow(body: RequestBody) = fire(Dispatchers.IO) {
+
+        val add = SunnyWeatherNetWork.setReserveNow(body)
+        //Result这个类kotlin是内置的
+        if (add.code == "0") {
+            Result.success(add.data)
+        } else {
+            Result.failure(RuntimeException("repsponse status is "))
+        }
 
 
+
+    }
+
+
+
+
+
+
+    fun getRecorder(body: RequestBody) = fire(Dispatchers.IO) {
+
+        val add = SunnyWeatherNetWork.chargeRecord(body)
+        //Result这个类kotlin是内置的
+        if (add.code == "0") {
+            Result.success(add.data)
+        } else {
+            Result.failure(RuntimeException("repsponse status is "))
+        }
+
+
+
+    }
 
 
 
 
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
-        liveData<Result<T>>(context) {
+        liveData(context) {
             val result = try {
                 block()
             } catch (e: Exception) {
                 if (e is BaseException) {
                     Result.failure(RuntimeException(e.errorMsg))
                 } else {
-                    Result.failure<T>(e)
+                    Result.failure(e)
                 }
 
             }

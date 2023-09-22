@@ -22,9 +22,11 @@ object SunnyWeatherNetWork {
     suspend fun delayStartTransaction(body: RequestBody) = acountService.delayStartTransaction(body).await()
     suspend fun lock(body: RequestBody) = acountService.delayStartTransaction(body).await()
     suspend fun reserveNow(body: RequestBody) = acountService.reserveNow(body).await()
+    suspend fun remoteStartTransaction(body: RequestBody) = acountService.remoteStartTransaction(body).await()
 
 
-
+    suspend fun setReserveNow(body: RequestBody) = acountService.setReserveNow(body).await()
+    suspend fun chargeRecord(body: RequestBody) = acountService.chargeRecord(body).await()
 
 
     private suspend fun <T> Call<T>.await(): T {

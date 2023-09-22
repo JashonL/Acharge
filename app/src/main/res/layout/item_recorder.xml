@@ -40,27 +40,29 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_gun"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
-                        android:text="@string/ev_charging"
-                        android:textColor="@color/color_text_33"
+                        android:text="A枪"
+                        android:textColor="@color/color_2EAFFF"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
                     <TextView
+                        android:id="@+id/tv_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
-                        android:text="@string/ev_charging"
+                        android:text="2488484545"
                         android:textColor="@color/color_text_33"
-                        android:textSize="@dimen/size_content_sp_14" />
+                        android:textSize="@dimen/size_content_sp_12" />
 
 
                 </LinearLayout>
@@ -79,26 +81,28 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_start_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
-                        android:text="@string/ev_charging"
-                        android:textColor="@color/color_text_33"
+                        android:text="2023/04/05 10:45"
+                        android:textColor="@color/color_2EAFFF"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
                     <TextView
+                        android:id="@+id/tv_end_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
-                        android:text="@string/ev_charging"
-                        android:textColor="@color/color_text_33"
+                        android:text="10:56-11:20"
+                        android:textColor="@color/color_2EAFFF"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
@@ -118,7 +122,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_74"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
 
@@ -126,21 +131,25 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color_text_66"
                         android:gravity="center"
+                        android:text="@string/m119_time"
+                        android:textColor="@color/color_text_66"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
                     <TextView
-                        android:id="@+id/tv_geting_start"
+                        android:id="@+id/tv_ctime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
                         android:gravity="center"
+                        android:text="0h:20min"
                         android:textColor="@color/color_text_33"
                         android:textSize="@dimen/size_content_sp_14" />
 
@@ -152,20 +161,25 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color_text_66"
                         android:gravity="center"
+                        android:text="@string/m118_electricity"
+                        android:textColor="@color/color_text_66"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
                     <TextView
+                        android:id="@+id/tv_ele"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
                         android:gravity="center"
+                        android:text="0.16kW"
                         android:textColor="@color/color_text_33"
                         android:textSize="@dimen/size_content_sp_14" />
 
@@ -176,20 +190,25 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color_text_66"
                         android:gravity="center"
+                        android:text="@string/m120_money"
+                        android:textColor="@color/color_text_66"
                         android:textSize="@dimen/size_content_sp_14" />
 
 
                     <TextView
+                        android:id="@+id/tv_cost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
                         android:gravity="center"
+                        android:text="5"
                         android:textColor="@color/color_text_33"
                         android:textSize="@dimen/size_content_sp_14" />
 

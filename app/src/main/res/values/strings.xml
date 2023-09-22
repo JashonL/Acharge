@@ -356,6 +356,9 @@ confirmation after plug in your car。</string>
 
     <string name="preset_charging">Preset charging</string>
 
+    <string name="enter_start_time">Please enter the start time</string>
+    <string name="enter_preset_value">Please enter the preset value</string>
+
 
     <string name="wait_dev">敬请期待！</string>
 

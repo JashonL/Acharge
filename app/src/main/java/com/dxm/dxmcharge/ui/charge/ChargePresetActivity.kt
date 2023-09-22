@@ -3,6 +3,7 @@ package com.dxm.dxmcharge.ui.charge
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
@@ -33,7 +34,7 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
 
 
     //预约类型1时长  2金额 3电量
-    private var cKey = ""
+    private var cKey = "G_SetAmount"
     private var connectorId: String? = ""
 
 
@@ -59,17 +60,20 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
     }
 
     private fun initData() {
-        connectorId = intent.getStringExtra("connectorId")
 
-        val chargeId = getCurrentChargeModel()?.chargeId
-        val language = LanUtils.getLanguage(this)
-        chargePresetViewModel.reserveNow(
-            "ReserveNow",
-            accountService().user()?.userId,
-            chargeId,
-            connectorId,
-            language.toString()
-        )
+        chargePresetViewModel.setReserveNowInfoLiveData.observe(this){
+            dismissDialog()
+            val orNull = it.getOrNull()
+            if (orNull != null) {
+                ToastUtil.show(orNull)
+                finish()
+            } else {
+                val message = it.exceptionOrNull()?.message
+                ToastUtil.show(message)
+            }
+
+        }
+
 
 
         chargePresetViewModel.newLiveData.observe(this) {
@@ -107,6 +111,19 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
 
 
         }
+
+
+        connectorId = intent.getStringExtra("connectorId")
+
+        val chargeId = getCurrentChargeModel()?.chargeId
+        val language = LanUtils.getLanguage(this)
+        chargePresetViewModel.reserveNow(
+            "ReserveNow",
+            accountService().user()?.userId,
+            chargeId,
+            connectorId,
+            language.toString()
+        )
 
 
     }
@@ -161,13 +178,108 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                 selectDate(binding.none.etStartTime)
             }
             p0 === binding.btLogin -> {
+                remoteStartTransaction()
+            }
+        }
+    }
 
 
+    public fun remoteStartTransaction() {
+        when (cKey) {
+            "G_SetAmount" -> {
+                //预约时间
+                val startTime = binding.money.etStartTime.text
+                val cValue = binding.money.etCost.text ?: ""
+                if (TextUtils.isEmpty(startTime)) {
+                    ToastUtil.show(getString(R.string.enter_start_time))
+                    return
+                }
+                if (TextUtils.isEmpty(cValue)) {
+                    ToastUtil.show(getString(R.string.enter_preset_value))
+                    return
+                }
+
+                val chargeId = getCurrentChargeModel()?.chargeId
+                val language = LanUtils.getLanguage(this)
+
+                showDialog()
+                chargePresetViewModel.setReserveNow(
+                    "ReserveNow",
+                    cKey,
+                    cValue.toString(),
+                    chargeId,
+                    connectorId,
+                    accountService().user()?.userId,
+                    language.toString()
+                    )
+
+
+            }
+            "G_SetEnergy" -> {
+
+                //预约时间
+                val startTime = binding.ele.etStartTime.text
+                val cValue = binding.ele.etCvalue.text ?: ""
+                if (TextUtils.isEmpty(startTime)) {
+                    ToastUtil.show(getString(R.string.enter_start_time))
+                    return
+                }
+                if (TextUtils.isEmpty(cValue)) {
+                    ToastUtil.show(getString(R.string.enter_preset_value))
+                    return
+                }
+
+                val chargeId = getCurrentChargeModel()?.chargeId
+                val language = LanUtils.getLanguage(this)
+
+                showDialog()
+                chargePresetViewModel.setReserveNow(
+                    "ReserveNow",
+                    cKey,
+                    cValue.toString(),
+                    chargeId,
+                    connectorId,
+                    accountService().user()?.userId,
+                    language.toString()
+                )
 
 
 
             }
+            "G_SetTime" -> {
+                //预约时间
+                val startTime = binding.duration.etStartTime.text
+                val cValue = binding.ele.etCvalue.text ?: ""
+                if (TextUtils.isEmpty(startTime)) {
+                    ToastUtil.show(getString(R.string.enter_start_time))
+                    return
+                }
+                if (TextUtils.isEmpty(cValue)) {
+                    ToastUtil.show(getString(R.string.enter_preset_value))
+                    return
+                }
+
+                val chargeId = getCurrentChargeModel()?.chargeId
+                val language = LanUtils.getLanguage(this)
+
+                showDialog()
+                chargePresetViewModel.setReserveNow(
+                    "ReserveNow",
+                    cKey,
+                    cValue.toString(),
+                    chargeId,
+                    connectorId,
+                    accountService().user()?.userId,
+                    language.toString()
+                )
+            }
+            else -> {
+                //只预约开始时间
+
+            }
         }
+
+
     }
 
 

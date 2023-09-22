@@ -43,4 +43,38 @@ class ChargePresetViewModel : BaseViewModel() {
 
 
 
+    private val setReserveNowLiveData = MutableLiveData<RequestBody>()
+
+    fun setReserveNow(
+        cmd: String?,
+        cKey: String?,
+        cValue: String? = "",
+        chargeId: String? = "",
+        connectorId: String? = "",
+        userId: String? = "",
+        lan: String?,
+    ) {
+
+
+
+        val jsonOf = jsonOf(
+            "action" to cmd,
+            "cKey" to cKey,
+            "cValue" to cValue,
+            "chargeId" to chargeId,
+            "connectorId" to connectorId,
+            "userId" to userId,
+            "lan" to lan
+        )
+        setReserveNowLiveData.value = jsonOf
+    }
+
+    val setReserveNowInfoLiveData = setReserveNowLiveData.switchMap {
+        Respository.setReserveNow(it)
+    }
+
+
+
+
+
 }
