@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".ui.device.ChargeListActivity">
 
+
+    <com.charge.lib.view.StatusBarHeightView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
     <com.dxm.dxmcharge.widget.TitleBarLayout
         android:id="@+id/title"
         android:layout_width="match_parent"

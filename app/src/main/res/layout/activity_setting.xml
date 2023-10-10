@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".ui.settting.SettingActivity">
 
+    <com.charge.lib.view.StatusBarHeightView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white" />
 
     <include layout="@layout/title_bar_layout" />
 
