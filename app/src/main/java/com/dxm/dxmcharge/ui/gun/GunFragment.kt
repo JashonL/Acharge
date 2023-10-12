@@ -140,7 +140,7 @@ class GunFragment : BaseFragment() {
         }
 
         bind.other.llFast.setOnClickListener {
-            ToastUtil.show(getString(R.string.wait_dev))
+//            ToastUtil.show(getString(R.string.wait_dev))
         }
 
         bind.other.llLocked.setOnClickListener {

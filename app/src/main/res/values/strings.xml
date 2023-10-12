@@ -360,6 +360,11 @@ confirmation after plug in your car。</string>
     <string name="enter_preset_value">Please enter the preset value</string>
 
 
+
+    <string name="fast_model">Fast</string>
+    <string name="unlocked">unLocked</string>
+    <string name="appointment_charging">Appointment Charging</string>
+
     <string name="wait_dev">敬请期待！</string>
 
 </resources>
