@@ -26,7 +26,12 @@ import com.shuoxd.lib.service.account.User
 
 class LoginActivity : BaseActivity() {
 
+
     companion object {
+
+        const val AUTOLOGIN="IS_AUTO"
+
+
         fun start(context: Context?) {
             context?.startActivity(Intent(context, LoginActivity::class.java))
         }

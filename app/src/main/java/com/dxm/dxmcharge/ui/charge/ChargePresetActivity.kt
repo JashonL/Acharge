@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.charge.lib.util.DateUtils
@@ -19,6 +20,7 @@ import com.dxm.dxmcharge.base.BaseActivity
 import com.dxm.dxmcharge.databinding.ActivityChargePresetBinding
 import com.dxm.dxmcharge.extend.gone
 import com.dxm.dxmcharge.extend.visible
+import com.dxm.dxmcharge.logic.model.ReserveNow
 import java.util.*
 
 class ChargePresetActivity : BaseActivity(), OnClickListener {
@@ -34,7 +36,7 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
 
 
     //预约类型1时长  2金额 3电量
-    private var cKey = "G_SetAmount"
+    private var cKey = "G_SetEnergy"
     private var connectorId: String? = ""
 
 
@@ -57,11 +59,17 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
         binding.duration.llTimeOn.setOnClickListener(this)
         binding.none.llTimeOn.setOnClickListener(this)
         binding.btLogin.setOnClickListener(this)
+
+
+        binding.cardCost.setOnClickListener(this)
+        binding.cardEle.setOnClickListener(this)
+        binding.cardDuration.setOnClickListener(this)
+
     }
 
     private fun initData() {
 
-        chargePresetViewModel.setReserveNowInfoLiveData.observe(this){
+        chargePresetViewModel.setReserveNowInfoLiveData.observe(this) {
             dismissDialog()
             val orNull = it.getOrNull()
             if (orNull != null) {
@@ -79,15 +87,16 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
         chargePresetViewModel.newLiveData.observe(this) {
             dismissDialog()
             val orNull = it.getOrNull()
-            if (orNull != null) {
-                cKey = orNull.cKey
+            if (orNull != null && !orNull.isEmpty()) {
+                val get = orNull[0]
+                cKey = get.cKey
                 showViewsByPreset()
                 //预约电量
-                val cValue = orNull.cValue
+                val cValue = get.cValue
                 //定额
-                val cValue2 = orNull.cValue2
+                val cValue2 = get.cValue2
                 //开始时间
-                val expiryDate = orNull.expiryDate
+                val expiryDate = get.expiryDate
 
                 binding.money.etCost.setText(cValue2)
                 if (cKey == "G_SetEnergy") {
@@ -150,7 +159,7 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                 cKey = if (cKey == "G_SetTime") {
                     ""
                 } else {
-                    "G_SetAmount"
+                    "G_SetTime"
                 }
                 setChoose()
             }
@@ -211,7 +220,7 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                     connectorId,
                     accountService().user()?.userId,
                     language.toString()
-                    )
+                )
 
 
             }
@@ -244,12 +253,11 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                 )
 
 
-
             }
             "G_SetTime" -> {
                 //预约时间
                 val startTime = binding.duration.etStartTime.text
-                val cValue = binding.ele.etCvalue.text ?: ""
+                val cValue = binding.duration.etCvalue.text ?: ""
                 if (TextUtils.isEmpty(startTime)) {
                     ToastUtil.show(getString(R.string.enter_start_time))
                     return
@@ -276,6 +284,27 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
             else -> {
                 //只预约开始时间
 
+                //预约时间
+                val startTime = binding.none.etStartTime.text
+                if (TextUtils.isEmpty(startTime)) {
+                    ToastUtil.show(getString(R.string.enter_start_time))
+                    return
+                }
+
+
+                val chargeId = getCurrentChargeModel()?.chargeId
+                val language = LanUtils.getLanguage(this)
+
+                showDialog()
+                chargePresetViewModel.setReserveNow(
+                    "ReserveNow",
+                    cKey,
+                    "",
+                    chargeId,
+                    connectorId,
+                    accountService().user()?.userId,
+                    language.toString()
+                )
             }
         }
 
@@ -300,6 +329,30 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                 )
                 binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
+
+
+
+                binding.tvAmountOfMoney.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+
+                binding.tvDuration.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+                binding.tvQuantityOfElectricity.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+
+
             }
             "G_SetEnergy" -> {
                 binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -315,6 +368,29 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                         R.color.color_28BEF1
                     )
                 )
+
+
+                binding.tvAmountOfMoney.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+
+                binding.tvDuration.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+                binding.tvQuantityOfElectricity.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+
+
             }
             "G_SetTime" -> {
                 binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -325,6 +401,27 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                     )
                 )
                 binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+
+                binding.tvAmountOfMoney.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+
+                binding.tvDuration.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+                binding.tvQuantityOfElectricity.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+
             }
             else -> {
                 binding.cardCost.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -335,6 +432,28 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                     )
                 )
                 binding.cardEle.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white))
+
+
+
+                binding.tvAmountOfMoney.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+
+                binding.tvDuration.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
+                binding.tvQuantityOfElectricity.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.color_text_66
+                    )
+                )
             }
         }
 
@@ -342,7 +461,7 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
     }
 
 
-    private fun selectDate(etView: EditText) {
+    private fun selectDate(etView: TextView) {
         DatePickerFragment.show(supportFragmentManager, object : OnDateSetListener {
             override fun onDateSet(date: Date) {
                 val yyyyMmDdHhMmSsSssFormat = DateUtils.yyyy_MM_dd_HH_mm_ss_SSS_format(date)
@@ -379,6 +498,8 @@ class ChargePresetActivity : BaseActivity(), OnClickListener {
                 binding.none.llNone.visible()
             }
         }
+
+        setChoose()
 
 
     }

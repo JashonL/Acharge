@@ -8,17 +8,17 @@ import java.util.*
  * 日期格式化工具类
  */
 object DateUtils {
-    val yyyy_format = SimpleDateFormat("yyyy", Locale.US)
-    val yyyy_MM_format = SimpleDateFormat("yyyy-MM", Locale.US)
-    val yyyy_MM_dd_format = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-    val yyyy_MM_dd_HH_mm_ss_format = SimpleDateFormat("yyyy-MM-dd HH-mm-ss", Locale.US)
-    val yyyy_MM_dd_HH_mm_ss_format_2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
-    val yyyy_MM_dd_HH_mm_format = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
-    val HH_mm_format = SimpleDateFormat("HH:mm", Locale.US)
-    val HH_mm_ss_format = SimpleDateFormat("HH:mm:ss", Locale.US)
-    val MM_dd_HH_mm_format = SimpleDateFormat("MM-dd HH:mm", Locale.US)
-    val HH_mm_ss_SSS_format = SimpleDateFormat("HH:mm:ss::SSS", Locale.US)
-    val yyyy_MM_dd_HH_mm_ss_SSS_format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss::SSS'Z'", Locale.US)
+    val yyyy_format = SimpleDateFormat("yyyy", Locale.getDefault())
+    val yyyy_MM_format = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+    val yyyy_MM_dd_format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val yyyy_MM_dd_HH_mm_ss_format = SimpleDateFormat("yyyy-MM-dd HH-mm-ss", Locale.getDefault())
+    val yyyy_MM_dd_HH_mm_ss_format_2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    val yyyy_MM_dd_HH_mm_format = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+    val HH_mm_format = SimpleDateFormat("HH:mm", Locale.getDefault())
+    val HH_mm_ss_format = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    val MM_dd_HH_mm_format = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())
+    val HH_mm_ss_SSS_format = SimpleDateFormat("HH:mm:ss::SSS", Locale.getDefault())
+    val yyyy_MM_dd_HH_mm_ss_SSS_format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss::SSS'Z'", Locale.getDefault())
 
     fun yyyy_format(date: Date): String {
 

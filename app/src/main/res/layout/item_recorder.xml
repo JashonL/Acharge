@@ -14,14 +14,14 @@
         <!--蓝色边-->
         <View
             android:layout_width="@dimen/dp_10"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/color_6AD1F6" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <!--A枪 充电时间-->
 

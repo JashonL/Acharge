@@ -52,7 +52,7 @@ class API {
 
 
         //解锁
-        @POST("/ev/version/1.0.0/unlocked")
+        @POST("/ev/version/1.0.0/api/unlocked")
         fun unlocked(@Body body: RequestBody):Call<HttpResult<String>>
 
 
@@ -64,21 +64,27 @@ class API {
 
 
         //预约
-        @POST("/ev/version/1.0.0/ReserveNow")
-        fun reserveNow(@Body body: RequestBody):Call<HttpResult<ReserveNow>>
+        @POST("/ev/version/1.0.0/api/ReserveNow")
+        fun reserveNow(@Body body: RequestBody):Call<HttpResult<List<ReserveNow>>>
 
 
 
         //设置预约
-        @POST("/ev/version/1.0.0/ReserveNow")
+        @POST("/ev/version/1.0.0/api/ReserveNow")
         fun setReserveNow(@Body body: RequestBody):Call<HttpResult<String>>
 
 
 
 
         //获取充电记录
-        @POST("/ev/version/1.0.0/chargeRecord")
-        fun chargeRecord(@Body body: RequestBody):Call<HttpResult<PageModel<Recorder>>>
+        @POST("/ev/version/1.0.0/api/chargeRecord")
+        fun chargeRecord(@Body body: RequestBody):Call<HttpResult<List<Recorder>>>
+
+
+        //解锁
+        @POST("/ev/version/1.0.0/unlock")
+        fun unlock(@Body body: RequestBody):Call<HttpResult<String>>
+
 
     }
 

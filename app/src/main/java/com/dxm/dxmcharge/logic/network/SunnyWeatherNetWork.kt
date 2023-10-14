@@ -27,6 +27,7 @@ object SunnyWeatherNetWork {
 
     suspend fun setReserveNow(body: RequestBody) = acountService.setReserveNow(body).await()
     suspend fun chargeRecord(body: RequestBody) = acountService.chargeRecord(body).await()
+    suspend fun unlocked(body: RequestBody) = acountService.unlocked(body).await()
 
 
     private suspend fun <T> Call<T>.await(): T {

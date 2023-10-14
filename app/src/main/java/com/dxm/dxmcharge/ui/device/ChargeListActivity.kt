@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,15 +17,16 @@ import com.charge.lib.util.ToastUtil
 import com.dxm.dxmcharge.ChargeActivity
 import com.dxm.dxmcharge.R
 import com.dxm.dxmcharge.base.BaseActivity
+import com.dxm.dxmcharge.base.BaseViewHolder
+import com.dxm.dxmcharge.base.OnItemClickListener
+import com.dxm.dxmcharge.base.viewholder.EmptyViewHolder
 import com.dxm.dxmcharge.databinding.ActivityChargeListBinding
 import com.dxm.dxmcharge.databinding.ItemCharge2Binding
 import com.dxm.dxmcharge.databinding.ItemChargeBinding
 import com.dxm.dxmcharge.logic.model.Charge
-import com.dxm.dxmcharge.widget.itemdecoration.DividerItemDecoration
-import com.dxm.dxmcharge.base.BaseViewHolder
-import com.dxm.dxmcharge.base.OnItemClickListener
-import com.dxm.dxmcharge.base.viewholder.EmptyViewHolder
 import com.dxm.dxmcharge.ui.device.monitor.ChargeAactivityMonitor
+import com.dxm.dxmcharge.ui.menu.MenuFragment
+import com.dxm.dxmcharge.widget.itemdecoration.DividerItemDecoration
 
 class ChargeListActivity : BaseActivity() {
 
@@ -79,6 +81,13 @@ class ChargeListActivity : BaseActivity() {
 
     private fun initViews() {
 
+
+        /*---------------------------自定义侧边栏布局-----------------------------*/
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.navigationview, MenuFragment()).commit()
+
+
+
         bind.tvSeemYou.text = accountService().user()?.userId + "!"
 
         bind.title.setOnLeftIvClickListener {
@@ -108,6 +117,11 @@ class ChargeListActivity : BaseActivity() {
 
         bind.search.ivSearch.setOnClickListener {
             freshChage()
+        }
+
+        bind.title.setOnRightImageClickListener {
+            bind.drawerLayout.openDrawer(GravityCompat.START)
+
         }
 
 

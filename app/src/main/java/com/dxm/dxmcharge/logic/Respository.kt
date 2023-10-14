@@ -273,6 +273,25 @@ object Respository {
 
 
 
+
+    fun unlock(body: RequestBody) = fire(Dispatchers.IO) {
+
+        val add = SunnyWeatherNetWork.unlocked(body)
+        //Result这个类kotlin是内置的
+        if (add.code == "0") {
+            Result.success(add.data)
+        } else {
+            Result.failure(RuntimeException("repsponse status is "))
+        }
+
+
+
+    }
+
+
+
+
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData(context) {
             val result = try {

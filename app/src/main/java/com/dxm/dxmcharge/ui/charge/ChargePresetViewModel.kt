@@ -10,7 +10,6 @@ import okhttp3.RequestBody
 class ChargePresetViewModel : BaseViewModel() {
 
 
-
     private val reserveNowLivedata = MutableLiveData<RequestBody>()
     fun reserveNow(
         cmd: String?,
@@ -19,7 +18,6 @@ class ChargePresetViewModel : BaseViewModel() {
         connectorId: String? = "",
         lan: String?,
     ) {
-
 
 
         val jsonOf = jsonOf(
@@ -37,24 +35,22 @@ class ChargePresetViewModel : BaseViewModel() {
     }
 
 
-
-
-
-
-
-
     private val setReserveNowLiveData = MutableLiveData<RequestBody>()
 
     fun setReserveNow(
         cmd: String?,
+
         cKey: String?,
+
         cValue: String? = "",
+
         chargeId: String? = "",
         connectorId: String? = "",
         userId: String? = "",
         lan: String?,
-    ) {
+        expiryDate: String? = ""
 
+    ) {
 
 
         val jsonOf = jsonOf(
@@ -64,7 +60,8 @@ class ChargePresetViewModel : BaseViewModel() {
             "chargeId" to chargeId,
             "connectorId" to connectorId,
             "userId" to userId,
-            "lan" to lan
+            "lan" to lan,
+            "expiryDate" to expiryDate
         )
         setReserveNowLiveData.value = jsonOf
     }
@@ -72,9 +69,6 @@ class ChargePresetViewModel : BaseViewModel() {
     val setReserveNowInfoLiveData = setReserveNowLiveData.switchMap {
         Respository.setReserveNow(it)
     }
-
-
-
 
 
 }

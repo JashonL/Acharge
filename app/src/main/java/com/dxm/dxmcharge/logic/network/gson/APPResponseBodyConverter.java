@@ -46,6 +46,7 @@ public class APPResponseBodyConverter<T> implements Converter<ResponseBody, T> {
                 //异常处理
                 throw new BaseException(code, data);
             }
+
             //正确返回整个json
             return adapter.fromJson(jsonString);
 

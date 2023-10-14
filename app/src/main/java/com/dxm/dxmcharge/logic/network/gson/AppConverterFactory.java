@@ -2,9 +2,11 @@ package com.dxm.dxmcharge.logic.network.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import okhttp3.ResponseBody;
@@ -36,7 +38,16 @@ public class AppConverterFactory extends Converter.Factory {
 
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new APPResponseBodyConverter<>(adapter);
     }
+
+
+
+
+
+
+
+
 }

@@ -78,13 +78,34 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10">
 
-                    <include layout="@layout/charge_info" android:id="@+id/chageinfo" />
+                    <include
+                        android:id="@+id/chageinfo"
+                        layout="@layout/charge_info" />
 
-                    <include layout="@layout/time_info" android:id="@+id/batinfo"/>
+                    <include
+                        android:id="@+id/batinfo"
+                        layout="@layout/time_info" />
 
-                    <include layout="@layout/other" android:id="@+id/other"/>
+                    <include
+                        android:id="@+id/other"
+                        layout="@layout/other" />
 
                 </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_recoder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@color/white"
+                    android:padding="@dimen/dp_10"
+                    android:drawableStart="@drawable/record"
+                    android:text="@string/m117_record"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:textColor="@color/color_text_33"
+                    android:textSize="@dimen/size_content_sp_14" />
+
 
             </LinearLayout>
 

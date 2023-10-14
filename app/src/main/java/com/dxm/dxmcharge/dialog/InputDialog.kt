@@ -102,4 +102,8 @@ class InputDialog : BaseDialogFragment(),View.OnClickListener{
     }
 
 
+
+
+
+
 }

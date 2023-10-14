@@ -62,4 +62,30 @@ class ChargingModel : ViewModel() {
 
 
 
+
+
+    private val lockLivedata = MutableLiveData<RequestBody>()
+    fun unlock(
+        cmd: String?,
+        userId: String?,
+        chargeId: String? = "",
+        connectorId: String? = "",
+        lan: String?,
+    ) {
+        val jsonOf = jsonOf(
+            "cmd" to cmd,
+            "userId" to userId,
+            "chargeId" to chargeId,
+            "connectorId" to connectorId,
+            "lan" to lan,
+        )
+        lockLivedata.value = jsonOf
+    }
+
+
+    val unlockLiveData = lockLivedata.switchMap {
+        Respository.unlock(it)
+    }
+
+
 }

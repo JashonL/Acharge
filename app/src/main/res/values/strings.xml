@@ -362,8 +362,23 @@ confirmation after plug in your car。</string>
 
 
     <string name="fast_model">Fast</string>
+    <string name="pvlink_model">PV Linkage</string>
+    <string name="offpeak_model">Off Peak</string>
     <string name="unlocked">unLocked</string>
     <string name="appointment_charging">Appointment Charging</string>
+
+    <string name="simplex">Single phase</string>
+    <string name="three_phase">Three phase</string>
+    <string name="chiose_load">Select load</string>
+
+    <string name="please_select">Please Select</string>
+    <string name="external_current_sam">External current sampling wiring method</string>
+    <string name="ameter_type">Meter type</string>
+
+    <string name="quantity_of_electricity">quantity of electricity</string>
+    <string name="amount_of_money">amount of money</string>
+
+
 
     <string name="wait_dev">敬请期待！</string>
 

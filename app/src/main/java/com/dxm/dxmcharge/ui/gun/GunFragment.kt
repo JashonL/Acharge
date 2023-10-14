@@ -18,7 +18,10 @@ import com.dxm.dxmcharge.databinding.FragmentGunBinding
 import com.dxm.dxmcharge.extend.gone
 import com.dxm.dxmcharge.extend.visible
 import com.dxm.dxmcharge.service.charge.ChargeStatus
+import com.dxm.dxmcharge.ui.charge.ChargePresetActivity
+import com.dxm.dxmcharge.ui.record.RecorderActivity
 import com.dxm.dxmcharge.ui.settting.DelayedChargingActivity
+import com.dxm.dxmcharge.ui.settting.dialog.DialogMode
 import com.dxm.dxmcharge.util.DateUtils
 import com.dxm.dxmcharge.util.ValueUtil
 import com.dxm.dxmcharge.widget.OnTabSelectedListener
@@ -89,6 +92,18 @@ class GunFragment : BaseFragment() {
                 getChargeInfo()
             }
         }
+
+        ChargingModel.unlockLiveData.observe(viewLifecycleOwner){
+            if (it.getOrNull() != null) {
+                ToastUtil.show(it.getOrNull())
+            } else {
+                val message = it.exceptionOrNull()?.message
+                ToastUtil.show(message)
+            }
+
+        }
+
+
     }
 
 
@@ -135,20 +150,49 @@ class GunFragment : BaseFragment() {
     }
 
     private fun initLiseners() {
+        bind.tvRecoder.setOnClickListener {
+            RecorderActivity.start(requireContext())
+        }
+
         bind.button.btLogin.setOnClickListener {
             chargeAction()
         }
 
         bind.other.llFast.setOnClickListener {
 //            ToastUtil.show(getString(R.string.wait_dev))
+
+/*            DialogMode.showDialog(childFragmentManager,object: DialogMode.OnItemclickLisener {
+                override fun onItemclick(mode: String) {
+                    when(mode){
+                        "fast"->{
+                            startCharge("remoteStartTransaction")
+                        }
+
+                        "pvlink"->{
+
+                        }
+
+                        "offpeak"->{
+
+                        }
+
+                    }
+                }
+
+            })*/
+
         }
 
         bind.other.llLocked.setOnClickListener {
-            ToastUtil.show(getString(R.string.wait_dev))
+
+            unlock()
+
+
         }
 
         bind.other.llAppointmentCharge.setOnClickListener {
-            ToastUtil.show(getString(R.string.wait_dev))
+            val i = bind.tabLayout.getSelectTabPosition() + 1
+            ChargePresetActivity.start(context,i.toString())
         }
         bind.other.llDelayCharging.setOnClickListener {
             val i = bind.tabLayout.getSelectTabPosition() + 1
@@ -157,6 +201,25 @@ class GunFragment : BaseFragment() {
 
 
     }
+
+
+
+
+
+
+    private fun unlock() {
+        val chargeId = getCurrentChargeModel()?.chargeId
+        val language = LanUtils.getLanguage(requireContext())
+        ChargingModel.unlock(
+            "unlock",
+            accountService().user()?.userId,
+            chargeId,
+            param1,
+            language.toString()
+        )
+    }
+
+
 
 
     private fun getInfo() {

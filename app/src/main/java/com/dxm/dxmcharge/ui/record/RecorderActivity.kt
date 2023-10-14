@@ -1,5 +1,6 @@
 package com.dxm.dxmcharge.ui.record
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,21 +8,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.charge.lib.util.LanUtils
 import com.charge.lib.util.ToastUtil
 import com.dxm.dxmcharge.R
-import com.dxm.dxmcharge.base.BaseActivity
-import com.dxm.dxmcharge.base.BasePageListAdapter
-import com.dxm.dxmcharge.base.BaseViewHolder
-import com.dxm.dxmcharge.base.OnItemClickListener
+import com.dxm.dxmcharge.base.*
+import com.dxm.dxmcharge.base.viewholder.EmptyViewHolder
 import com.dxm.dxmcharge.databinding.ActivityRecorderBinding
 import com.dxm.dxmcharge.databinding.ItemRecorderBinding
 import com.dxm.dxmcharge.extend.gone
 import com.dxm.dxmcharge.extend.visible
+import com.dxm.dxmcharge.logic.model.Charge
 import com.dxm.dxmcharge.logic.model.Recorder
 import com.dxm.dxmcharge.ui.charge.ChargePresetViewModel
+import com.dxm.dxmcharge.ui.device.ChargeListActivity
 import com.dxm.dxmcharge.ui.gun.GunFragment
 import com.dxm.dxmcharge.widget.itemdecoration.DividerItemDecoration
 
@@ -53,13 +56,13 @@ class RecorderActivity : BaseActivity() {
 
 
     private fun requestData() {
-        (binding.rlvRecord.adapter as Adapter).refresh()
+        getRecordlist(0)
     }
 
     private fun initViews() {
 
         binding.srlPull.setOnRefreshListener {
-            (binding.rlvRecord.adapter as Adapter).refresh()
+            getRecordlist(0)
         }
 
 
@@ -71,7 +74,7 @@ class RecorderActivity : BaseActivity() {
                 10f
             )
         )
-        binding.rlvRecord.adapter = Adapter()
+        binding.rlvRecord.adapter = Adapter(this)
 
 
     }
@@ -100,7 +103,7 @@ class RecorderActivity : BaseActivity() {
             dismissDialog()
             val orNull = it.getOrNull()
             if (orNull != null) {
-                getAdapter().setResultSuccess(orNull)
+                getAdapter().refresh(orNull)
             } else {
                 val message = it.exceptionOrNull()?.message
                 ToastUtil.show(message)
@@ -116,43 +119,31 @@ class RecorderActivity : BaseActivity() {
         return binding.rlvRecord.adapter as Adapter
     }
 
-    inner class Adapter : BasePageListAdapter<Recorder>(), OnItemClickListener {
+    inner class Adapter(val context: Context?, var recorderList: MutableList<Recorder> = mutableListOf()) : RecyclerView.Adapter<BaseViewHolder>(), OnItemClickListener {
 
-        override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-            /*    return RecordViewHolder.create(parent) { view, position ->
-                    AlertDialog.showDialog(
-                        supportFragmentManager,
-                        getString(R.string.delete_message_or_not)
-                    ) {
-                        showDialog()
-
-                    }
-                }*/
-
-            return RecordViewHolder.create(parent, this)
-        }
-
-        override fun onBindItemViewHolder(holder: BaseViewHolder, position: Int) {
-            if (holder is RecordViewHolder) {
-                holder.bindData(dataList[position])
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+            return if (recorderList.isEmpty()) {
+                EmptyViewHolder.create(parent)
+            } else {
+                RecordViewHolder.create(parent, this)
             }
         }
 
-        override fun onLoadNext() {
-            getRecordlist(++currentPage)
+        override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+            if (holder is RecordViewHolder) {
+                holder.bindData(recorderList[position])
+            }
         }
 
-        override fun onRefresh() {
-            getRecordlist(currentPage)
+        override fun getItemCount(): Int {
+            return recorderList.size
         }
 
-
-        override fun showEmptyView() {
-            binding.tvEmpty.visible()
-        }
-
-        override fun hideEmptyView() {
-            binding.tvEmpty.gone()
+        @SuppressLint("NotifyDataSetChanged")
+        fun refresh(serviceList: List<Recorder>) {
+            this.recorderList.clear()
+            this.recorderList.addAll(serviceList)
+            notifyDataSetChanged()
         }
 
     }
@@ -185,10 +176,10 @@ class RecorderActivity : BaseActivity() {
             //枪数
             val nams = arrayListOf("A", "B", "C", "D")
             val connectorId = chargeModel.connectorId
-            if (connectorId < nams.size) {
-                binding.tvGun.text = nams[connectorId] + " " + getString(R.string.gun)
+            if (connectorId!! < nams.size) {
+                binding.tvGun.text = nams[connectorId!!] + " " + getString(R.string.gun)
             }
-            binding.tvId.text = chargeModel.cid.toString()
+            binding.tvId.text = chargeModel.chargeId
             binding.tvStartTime.text = chargeModel.starttime
             binding.tvEndTime.text = chargeModel.endtime
 
@@ -196,6 +187,7 @@ class RecorderActivity : BaseActivity() {
             binding.tvCtime.text = chargeModel.ctime.toString() + "min"
             binding.tvEle.text = chargeModel.energy.toString() + "kWh"
             binding.tvCost.text = chargeModel.cost.toString()
+
 
         }
     }

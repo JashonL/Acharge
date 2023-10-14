@@ -14,6 +14,12 @@
         android:background="@color/white" />
 
 
+    <com.dxm.dxmcharge.widget.TitleBarLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/presets" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,12 +36,15 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_duration"
             android:layout_width="@dimen/dp_80"
-            android:layout_height="@dimen/dp_80">
+            android:layout_height="@dimen/dp_80"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
                 android:orientation="vertical">
 
                 <View
@@ -44,10 +53,13 @@
                     android:background="@drawable/circle_gray" />
 
                 <TextView
+                    android:id="@+id/tv_duration"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="@string/duration"
+                    android:textSize="@dimen/size_content_sp_10"
                     android:textColor="@color/color_text_66" />
 
 
@@ -70,6 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
                 android:orientation="vertical">
 
                 <View
@@ -78,10 +92,13 @@
                     android:background="@drawable/circle_gray" />
 
                 <TextView
+                    android:id="@+id/tv_amount_of_money"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:text="@string/duration"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/size_content_sp_10"
+                    android:text="@string/amount_of_money"
                     android:textColor="@color/color_text_66" />
 
 
@@ -104,6 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
                 android:orientation="vertical">
 
                 <View
@@ -112,10 +131,13 @@
                     android:background="@drawable/circle_gray" />
 
                 <TextView
+                    android:id="@+id/tv_quantity_of_electricity"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:text="@string/duration"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/size_content_sp_10"
+                    android:text="@string/quantity_of_electricity"
                     android:textColor="@color/color_text_66" />
 
 

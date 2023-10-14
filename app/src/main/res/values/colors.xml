@@ -191,7 +191,7 @@
     <color name="color_btn_end">#28BFF1</color>
     <color name="color_B4B5BD">#B4B5BD</color>
     <color name="color_5EA1FF">#5EA1FF</color>
-    <color name="color_f333333">#F3333333</color>
+    <color name="color_f333333">#33333333</color>
 
 
     <color name="color_2EACFD">#2EACFD</color>
@@ -201,6 +201,7 @@
     <color name="color_2BB6F7">#2BB6F7</color>
     <color name="color_28BCF2">#28BCF2</color>
     <color name="color_2EAFFF">#2EAFFF</color>
+    <color name="color_6AD1F6">#6AD1F6</color>
 
 
 </resources>

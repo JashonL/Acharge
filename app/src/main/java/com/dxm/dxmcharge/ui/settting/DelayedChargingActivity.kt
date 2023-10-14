@@ -42,7 +42,11 @@ class DelayedChargingActivity : BaseActivity() {
     private var connectorId = "1"
 
 
+
+
     private var delaytime = 600
+    private var currentDelay=-1
+
     val model by lazy { ViewModelProvider(this)[DelayedChargeModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,8 +78,14 @@ class DelayedChargingActivity : BaseActivity() {
     }
 
     private fun initliseners() {
-        bind.cbSetting.setOnClickListener {
-            bind.cbDefault
+
+        bind.llDefalut.setOnClickListener {
+            delaytime = 600
+            check(1)
+        }
+
+        bind.llInput.setOnClickListener {
+            delaytime=currentDelay;
             InputDialog.showDialog(
                 supportFragmentManager,
                 delaytime.toString(),
@@ -83,8 +93,8 @@ class DelayedChargingActivity : BaseActivity() {
                 getString(R.string.m16_cancel),
                 getString(R.string.input_delay_time)
             ) {
-                val string = getString(R.string.start_charge_second, delaytime.toString())
-                delaytime = string.toInt()
+                val string = getString(R.string.start_charge_second, it.toString())
+                currentDelay = it.toInt()
                 bind.tvStartCharging.text = string
                 check(2)
             }
@@ -106,6 +116,8 @@ class DelayedChargingActivity : BaseActivity() {
             } else {
                 "0"
             }
+
+
 
 
             model.getDelaycharge(
